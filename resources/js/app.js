@@ -1,7 +1,11 @@
 // Imports
+// -- Dependencies
 import Vue from 'vue'
 import lodash from 'lodash'
 import Axios from 'axios'
+
+// -- File imports
+import './components'
 
 // Let's instantiate Axios
 window.axios = Axios
@@ -11,11 +15,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 const token = document.head.querySelector('meta[name="csrf-token"]')
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 } else {
-    console.error(
-        'CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token'
-    )
+  console.error(
+    'CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token'
+  )
 }
 
 // Bind lodash to window
@@ -28,5 +32,5 @@ window.lodash = lodash
  */
 
 const app = new Vue({
-    el: '#rosa-app',
+  el: '#rosa-app',
 })

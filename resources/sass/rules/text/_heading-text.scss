@@ -79,13 +79,13 @@ $mobile-decrease: 0.75;
         font-size: $size;
       }
     }
-  }
-
-  @else {
+  } @else {
     // Automatic sizing
     @for $heading from 2 through 7 {
+      $temp: $desktop-heading-size;
       #{'h' + $heading} {
-        font-size: $desktop-heading-size * power($heading, $desktop-decrease);
+        $temp: $desktop-heading-size * $desktop-decrease;
+        font-size: $temp;
       }
     }
   }
@@ -101,13 +101,13 @@ $mobile-decrease: 0.75;
         font-size: $size;
       }
     }
-  }
-
-  @else {
+  } @else {
     // Automatic sizing
+    $temp: $mobile-heading-size;
     @for $heading from 2 through 7 {
+      $temp: $temp * $mobile-decrease;
       #{'h' + $heading} {
-        font-size: $mobile-heading-size * power($heading, $mobile-decrease);
+        font-size: $temp;
       }
     }
   }

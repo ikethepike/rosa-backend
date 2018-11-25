@@ -339,53 +339,53 @@ h6 span {
 
 @media screen and (min-width: 60rem) {
   h2 {
-    font-size: 16rem;
+    font-size: 3rem;
   }
 
   h3 {
-    font-size: 36rem;
+    font-size: 3rem;
   }
 
   h4 {
-    font-size: 64rem;
+    font-size: 3rem;
   }
 
   h5 {
-    font-size: 100rem;
+    font-size: 3rem;
   }
 
   h6 {
-    font-size: 144rem;
+    font-size: 3rem;
   }
 
   h7 {
-    font-size: 196rem;
+    font-size: 3rem;
   }
 }
 
 @media screen and (max-width: 60rem) {
   h2 {
-    font-size: 10rem;
+    font-size: 1.875rem;
   }
 
   h3 {
-    font-size: 22.5rem;
+    font-size: 1.40625rem;
   }
 
   h4 {
-    font-size: 40rem;
+    font-size: 1.0546875rem;
   }
 
   h5 {
-    font-size: 62.5rem;
+    font-size: 0.79101563rem;
   }
 
   h6 {
-    font-size: 90rem;
+    font-size: 0.59326172rem;
   }
 
   h7 {
-    font-size: 122.5rem;
+    font-size: 0.44494629rem;
   }
 }
 
