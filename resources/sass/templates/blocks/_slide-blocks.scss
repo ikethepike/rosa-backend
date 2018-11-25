@@ -1,0 +1,95 @@
+/* 
+* Slide blocks
+* These blocks slide in a given direction
+*/
+
+// Slide block settings
+// -- Base time
+$slide-block-base-time: 0.33s;
+
+.slide-block,
+.slide-block-top,
+.slide-block-left,
+.slide-block-bottom,
+.slide-block-right {
+  will-change: transform;
+  animation-iteration-count: 1;
+}
+
+.slide-block,
+.slide-block-top {
+  animation-name: slide-block-top;
+}
+
+.slide-block-left {
+  animation-name: slide-block-left;
+}
+
+.slide-block-right {
+  animation-name: slide-block-right;
+}
+
+.slide-block-bottom {
+  animation-name: slide-block-bottom;
+}
+
+// Set timings
+@for $i from 1 through $animation-blocks {
+  .slide-block:nth-child(#{$i}),
+  .slide-block-top:nth-child(#{$i}),
+  .slide-block-left:nth-child(#{$i}),
+  .slide-block-bottom:nth-child(#{$i}),
+  .slide-block-right:nth-child(#{$i}) {
+    animation-duration: #{$i * $slide-block-base-time};
+  }
+}
+
+// Animations
+// -- Top
+@keyframes slide-block-top {
+  0% {
+    transform: translateY(5rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+// -- Left
+@keyframes slide-block-left {
+  0% {
+    transform: translateX(5rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+// -- Right
+@keyframes slide-block-right {
+  0% {
+    transform: translateX(-5rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+// -- Bottom
+@keyframes slide-block-bottom {
+  0% {
+    transform: translateY(-5rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

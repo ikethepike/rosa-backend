@@ -1,0 +1,44 @@
+/*
+* Branding
+* This file contains the main branding rules for your app,
+* here you can set color schemes, border styles and entire color profiles
+* 
+*/
+
+// Imports
+// -- Colors
+@import 'colors';
+
+// App color palette
+// -- Background color
+$background: #fff;
+
+// -- Default text color
+$color: #fff;
+
+// -- Highlight Color
+$highlight: $trailhead-orange;
+
+// Secondary Colors
+// -- Application dim
+$dim: rgba(0, 0, 0, 0.95);
+// -- Error color
+$error: $aurora-red;
+// -- Success color
+$success: $green-flash;
+
+// Highlights
+*.highlight,
+*.highlight-color {
+  color: $highlight;
+  stroke: $highlight;
+}
+
+*.highlight-bg,
+*.highlight-background {
+  background-color: $highlight;
+}
+
+// Secondary imports
+// -- Borders
+@import 'borders';
