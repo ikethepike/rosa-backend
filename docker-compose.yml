@@ -1,38 +1,38 @@
 version: '2'
 services:
-  laravel:
-    build:
-      context: ./
-      dockerfile: laravel.dockerfile
-    working_dir: /var/www
-    volumes:
-      - ./:/var/www
-    environment:
-      - 'DB_PORT=3306'
-      - 'DB_HOST=database'
-  nginx:
-    build:
-      context: ./
-      dockerfile: nginx.dockerfile
-    working_dir: /var/www
-    volumes_from:
-      - laravel
-    ports:
-      - 8080:80
-  mariadb:
-    image: mariadb
+    laravel:
+        build:
+            context: ./
+            dockerfile: laravel.dockerfile
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        environment:
+            - 'DB_PORT=3306'
+            - 'DB_HOST=database'
+    nginx:
+        build:
+            context: ./
+            dockerfile: nginx.dockerfile
+        working_dir: /var/www
+        volumes_from:
+            - laravel
+        ports:
+            - 8080:8080
+    mariadb:
+        image: mariadb
 
-    env_file:
-      - .env
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    ports:
-      - '3306:3306'
-  redis:
-    image: redis
-    ports:
-      - '6379:6379'
+        env_file:
+            - .env
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        ports:
+            - '3306:3306'
+    redis:
+        image: redis
+        ports:
+            - '6379:6379'
