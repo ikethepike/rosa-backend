@@ -1,38 +1,53 @@
-version: '2'
+version: '3.6'
+
+volumes:
+    database:
+    backend:
+
 services:
-    laravel:
-        build:
-            context: ./
-            dockerfile: laravel.dockerfile
-        working_dir: /var/www
+    mariadb:
+        image: mariadb
+        restart: always
         volumes:
-            - ./:/var/www
+            - database:/var/lib/mysql
+        env_file:
+            - .env
         environment:
-            - 'DB_PORT=3306'
-            - 'DB_HOST=database'
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_ROOT_HOST: '%'
+        ports:
+            - '3306:3306'
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8081:8080
+        depends_on:
+            - mariadb
     nginx:
         build:
             context: ./
             dockerfile: nginx.dockerfile
         working_dir: /var/www
-        volumes_from:
+        links:
             - laravel
         ports:
-            - 8080:8080
-    mariadb:
-        image: mariadb
-
-        env_file:
-            - .env
+            - 8080:80
+        volumes:
+            - backend:/var/www/
+    laravel:
+        image: jguyomard/laravel-php:7.2
         environment:
-            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-            MYSQL_DATABASE: ${DB_DATABASE}
-            MYSQL_PASSWORD: ${DB_PASSWORD}
-            MYSQL_USER: ${DB_USER}
-            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-        ports:
-            - '3306:3306'
+            - 'DB_PORT=3306'
+            - 'DB_HOST=mariadb'
+        links:
+            - mariadb
+        volumes:
+            - backend:/var/www/
+            - ./:/var/www/
     redis:
         image: redis
-        ports:
-            - '6379:6379'
+        command: redis-server --appendonly yes

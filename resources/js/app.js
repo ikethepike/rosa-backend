@@ -3,6 +3,8 @@ import Vue from 'vue'
 import lodash from 'lodash'
 import Axios from 'axios'
 
+import 'bootstrap'
+
 // Let's instantiate Axios
 window.axios = Axios
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
