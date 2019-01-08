@@ -1,0 +1,30 @@
+.hero-button {
+  width: 100%;
+  border: none;
+  color: #fff;
+  display: flex;
+  cursor: pointer;
+  font-weight: 700;
+  position: relative;
+  letter-spacing: 2px;
+  align-items: center;
+  justify-content: center;
+  font-family: $body-font;
+  text-transform: uppercase;
+  background: darken($highlight2, 20%);
+}
+
+// Responsive
+// -- Mobile
+@media #{$mobile} {
+  .hero-button {
+    height: 4rem;
+  }
+}
+
+// -- Desktop
+@media #{$desktop} {
+  .hero-button {
+    height: 4.5rem;
+  }
+}

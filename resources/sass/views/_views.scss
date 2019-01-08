@@ -1,10 +1,7 @@
 /* Page imports, index of all pages */
 
+// Login page
+@import 'login';
+
 // Landing
-@import "landing/landing";
-
-// Profile
-@import "profile/profile";
-
-// Access
-@import "access/access";
+@import 'landing/landing';

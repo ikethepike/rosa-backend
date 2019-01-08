@@ -20,13 +20,10 @@
 </head>
 
 <body>
-
-	{{-- Static content --}}
-	@yield("static")
 	
 	{{-- Dynamic content --}}
 	@hasSection("content")
-	<div id="rosa-app">
+	<div id="rosa-app" class="@yield('page')">
 		@yield('content')
 	</div>
 	@endif

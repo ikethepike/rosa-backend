@@ -8,9 +8,7 @@
 $desktop-button-size: 3.5rem;
 $mobile-button-size: 3rem;
 
-.button,
-button,
-input[type='submit'] {
+.button {
   display: inline-block;
   border: $border;
   background-color: transparent;

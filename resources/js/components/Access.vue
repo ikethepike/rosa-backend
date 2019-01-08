@@ -26,6 +26,8 @@
             <input required type="text" id="name" v-model="name">
           </div>
         </template>
+
+        <input type="submit" class="hero-button" :value="exists ? 'Login' : 'Register'">
       </form>
     </div>
   </div>

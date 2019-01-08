@@ -192,13 +192,13 @@ textarea {
 
 *.highlight,
 *.highlight-color {
-  color: #f64747;
-  stroke: #f64747;
+  color: #ee128b;
+  stroke: #ee128b;
 }
 
 *.highlight-bg,
 *.highlight-background {
-  background-color: #f64747;
+  background-color: #ee128b;
 }
 
 /*
@@ -544,6 +544,206 @@ body {
   overflow-x: hidden;
   background: #fff;
   min-height: 100vh;
+}
+
+/* 
+* Inputs and textareas
+* These files contain all the necessary styling rules for input elements 
+* and textareas. 
+*/
+
+input:not(input[type='submit']),
+textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  min-height: 3.5rem;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 60rem) {
+  input:not(input[type='submit']),
+  textarea {
+    min-height: 3rem;
+    font-size: 0.9rem;
+  }
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='date'],
+input[type='url'],
+input[type='tel'],
+input[type='number'],
+input[type='search'],
+input[type='time'],
+input[type='week'],
+input[type='datetime-local'] {
+  width: 100%;
+  border: none;
+  resize: none;
+  height: 3rem;
+  color: #fff;
+  background: none;
+  border-bottom: 2px solid #fff;
+}
+
+input[type='text'].error,
+input[type='email'].error,
+input[type='password'].error,
+input[type='date'].error,
+input[type='url'].error,
+input[type='tel'].error,
+input[type='number'].error,
+input[type='search'].error,
+input[type='time'].error,
+input[type='week'].error,
+input[type='datetime-local'].error {
+  border: 0.0625rem solid #a90118;
+}
+
+input[type='text'].success,
+input[type='text'].match,
+input[type='text'].confirmation,
+input[type='email'].success,
+input[type='email'].match,
+input[type='email'].confirmation,
+input[type='password'].success,
+input[type='password'].match,
+input[type='password'].confirmation,
+input[type='date'].success,
+input[type='date'].match,
+input[type='date'].confirmation,
+input[type='url'].success,
+input[type='url'].match,
+input[type='url'].confirmation,
+input[type='tel'].success,
+input[type='tel'].match,
+input[type='tel'].confirmation,
+input[type='number'].success,
+input[type='number'].match,
+input[type='number'].confirmation,
+input[type='search'].success,
+input[type='search'].match,
+input[type='search'].confirmation,
+input[type='time'].success,
+input[type='time'].match,
+input[type='time'].confirmation,
+input[type='week'].success,
+input[type='week'].match,
+input[type='week'].confirmation,
+input[type='datetime-local'].success,
+input[type='datetime-local'].match,
+input[type='datetime-local'].confirmation {
+  border: 0.0625rem solid #79c753;
+}
+
+/*
+* Textarea
+* Styling rules for how textareas look
+*
+*/
+
+textarea,
+.textarea {
+  resize: none;
+  height: 7rem;
+  border: none;
+  background: #fff;
+  color: #000;
+}
+
+@media screen and (max-width: 60rem) {
+  textarea,
+  .textarea {
+    height: 6rem;
+  }
+}
+
+/* Styling for the checkbox element 
+* Defaults to a simple circle element
+*
+*/
+
+input[type='checkbox'],
+.checkbox {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+/*
+* Interactives
+* Interactives include buttons, hero buttons and other things you interact with. 
+*/
+
+.hero-button {
+  width: 100%;
+  border: none;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  font-weight: 700;
+  position: relative;
+  letter-spacing: 2px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  text-transform: uppercase;
+  background: #232355;
+}
+
+@media screen and (max-width: 60rem) {
+  .hero-button {
+    height: 4rem;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .hero-button {
+    height: 4.5rem;
+  }
+}
+
+/*
+* General Buttons and submit elements
+* These rules define the styling of general button elements
+*/
+
+.button {
+  display: inline-block;
+  border: 0.0625rem solid #fff;
+  background-color: transparent;
+  color: #fff;
+  -webkit-transition: background 0.4s;
+  transition: background 0.4s;
+  height: 3.5rem;
+}
+
+.button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.button.error {
+  border-color: #a90118;
+  background: #a90118;
+}
+
+.button.success {
+  border-color: #79c753;
+  background: #79c753;
+}
+
+@media screen and (max-width: 60rem) {
+  .button {
+    height: 3rem;
+  }
 }
 
 /*
@@ -1303,7 +1503,7 @@ svg {
 }
 
 .icon-hover {
-  stroke: #f64747;
+  stroke: #ee128b;
 }
 
 /* Page imports, index of all pages */
@@ -1312,4 +1512,72 @@ svg {
 * Elements
 * Elements are specific elements that are view-agnostic and reusable anywhere
 */
+
+.access-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #ee128b;
+}
+
+.access-wrapper .access {
+  width: 90%;
+  margin: auto;
+  color: #fff;
+  max-width: 37rem;
+  background: #41409e;
+  -webkit-animation: slide-block-top 3s 1;
+          animation: slide-block-top 3s 1;
+}
+
+.access-wrapper .access header {
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+.access-wrapper .access form {
+  display: block;
+}
+
+.access-wrapper .access label {
+  display: block;
+  font-size: 0.75em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.access-wrapper .access input {
+  display: block;
+}
+
+.access-wrapper form > div {
+  padding: 0 2rem;
+}
+
+@media screen and (max-width: 60rem) {
+  .access-wrapper form > div {
+    margin-bottom: 2.5%;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .access-wrapper form > div {
+    margin-bottom: 5%;
+  }
+}
+
+@-webkit-keyframes fade-in-highlight {
+  0% {
+    background: #fff;
+  }
+}
+
+@keyframes fade-in-highlight {
+  0% {
+    background: #fff;
+  }
+}
 

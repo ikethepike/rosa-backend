@@ -1,21 +1,33 @@
 // Quick bindings
 // -- Bind all textual inputs
-$text-inputs: "input[type='text'], input[type='email'], input[type='password'], input[type='date'], input[type='url'], input[type='tel'], input[type='number'], input[type='search'], input[type='time'], input[type='week'], input[type='datetime-local]";
 
-#{$text-inputs} {
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='date'],
+input[type='url'],
+input[type='tel'],
+input[type='number'],
+input[type='search'],
+input[type='time'],
+input[type='week'],
+input[type='datetime-local'] {
   width: 100%;
-  background: #fff;
   border: none;
   resize: none;
+  height: 3rem;
+  color: #fff;
+  background: none;
+  border-bottom: 2px solid #fff;
 
   // States
   &.error {
-    border: $borderWidth $borderStyle $error;
+    border: $border-width $border-style $error;
   }
 
   &.success,
   &.match,
   &.confirmation {
-    border: $borderWidth $borderStyle $success;
+    border: $border-width $border-style $success;
   }
 }
