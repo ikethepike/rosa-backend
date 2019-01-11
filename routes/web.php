@@ -11,10 +11,22 @@
 |
 */
 
-Route::view('/', 'login')->name('login');
+Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('home');
+    }
+
+    return view('login');
+})->name('login');
+
+Route::get('logout', function () {
+    auth()->logout();
+
+    return redirect()->route('login');
+})->name('logout');
 
 Route::group(['prefix' => 'user'], function () {
-    Route::post('exists/', 'UserController@exists');
+    Route::post('exists', 'UserController@exists');
 
     Route::post('register', 'UserController@register');
 
@@ -23,5 +35,4 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::group(['middleware' => ['auth']], function () {
 });
-
 Route::get('/home', 'HomeController@index')->name('home');

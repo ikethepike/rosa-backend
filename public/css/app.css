@@ -542,7 +542,7 @@ body {
   position: relative;
   max-width: 100vw;
   overflow-x: hidden;
-  background: #fff;
+  background: #ececec;
   min-height: 100vh;
 }
 

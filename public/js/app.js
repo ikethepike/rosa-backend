@@ -123,7 +123,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(41);
+module.exports = __webpack_require__(44);
 
 
 /***/ }),
@@ -166,7 +166,7 @@ window.lodash = __WEBPACK_IMPORTED_MODULE_1_lodash___default.a;
  */
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('access', __webpack_require__(36));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('logo', __webpack_require__(39));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('logo', __webpack_require__(42));
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#rosa-app'
@@ -17344,7 +17344,7 @@ var normalizeComponent = __webpack_require__(11)
 /* script */
 var __vue_script__ = __webpack_require__(37)
 /* template */
-var __vue_template__ = __webpack_require__(38)
+var __vue_template__ = __webpack_require__(41)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -17388,7 +17388,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 
 
@@ -17613,313 +17613,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "access-wrapper" }, [
-    _c("div", { staticClass: "access" }, [
-      _c("header", { class: { processing: _vm.processing } }, [_c("logo")], 1),
-      _vm._v(" "),
-      _c(
-        "form",
-        {
-          on: {
-            submit: function($event) {
-              $event.preventDefault()
-              return _vm.onSubmit($event)
-            }
-          }
-        },
-        [
-          _c("div", [
-            _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.email,
-                  expression: "email"
-                }
-              ],
-              class: { error: _vm.errors.email },
-              attrs: { required: "", type: "email", id: "email" },
-              domProps: { value: _vm.email },
-              on: {
-                change: _vm.emailCheck,
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.email = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "error" }, [
-              _vm._v(_vm._s(_vm.errors.responses.email))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.password,
-                  expression: "password"
-                }
-              ],
-              class: [_vm.passwordState, { error: _vm.errors.password }],
-              attrs: { required: "", type: "password", id: "password" },
-              domProps: { value: _vm.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.password = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "error" }, [
-              _vm._v(_vm._s(_vm.errors.responses.repeat))
-            ])
-          ]),
-          _vm._v(" "),
-          !_vm.exists
-            ? [
-                _c("div", { staticClass: "slide-block" }, [
-                  _c("label", { attrs: { for: "repeat" } }, [
-                    _vm._v("Repeat your password")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.repeat,
-                        expression: "repeat"
-                      }
-                    ],
-                    class: [_vm.passwordState, { error: _vm.errors.repeat }],
-                    attrs: { required: "", type: "password", id: "repeat" },
-                    domProps: { value: _vm.repeat },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.repeat = $event.target.value
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "slide-block" }, [
-                  _c("label", { attrs: { for: "name" } }, [
-                    _vm._v("First Name")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.firstName,
-                        expression: "firstName"
-                      }
-                    ],
-                    class: { error: _vm.errors.firstName },
-                    attrs: { required: "", type: "text", id: "name" },
-                    domProps: { value: _vm.firstName },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.firstName = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "error" }, [
-                    _vm._v(_vm._s(_vm.errors.responses.firstName))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "slide-block" }, [
-                  _c("label", { attrs: { for: "name" } }, [
-                    _vm._v("Last Name")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.lastName,
-                        expression: "lastName"
-                      }
-                    ],
-                    class: { error: _vm.errors.lastName },
-                    attrs: { required: "", type: "text", id: "name" },
-                    domProps: { value: _vm.lastName },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.lastName = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "error" }, [
-                    _vm._v(_vm._s(_vm.errors.responses.lastName))
-                  ])
-                ])
-              ]
-            : _vm._e(),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "hero-button",
-            attrs: { type: "submit" },
-            domProps: { value: _vm.exists ? "Login" : "Register" }
-          })
-        ],
-        2
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-366e118f", module.exports)
-  }
-}
+module.exports = __webpack_require__(39);
+
 
 /***/ }),
 /* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(11)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = __webpack_require__(40)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/Logo.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1c796f16", Component.options)
-  } else {
-    hotAPI.reload("data-v-1c796f16", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "svg",
-    {
-      attrs: {
-        width: "191",
-        height: "57",
-        viewBox: "0 0 191 57",
-        fill: "currentColor",
-        stroke: "none",
-        "stroke-width": "0",
-        xmlns: "http://www.w3.org/2000/svg"
-      }
-    },
-    [
-      _c("path", {
-        attrs: {
-          d:
-            "M18.336 21.528C19.648 21.528 20.688 21.88 21.456 22.584C22.224 23.256 22.608 24.2 22.608 25.416C22.608 26.6 22.24 27.48 21.504 28.056C20.8 28.632 19.936 28.92 18.912 28.92C18.24 28.92 17.664 28.824 17.184 28.632C16.704 28.408 16.24 28.168 15.792 27.912C15.376 27.624 14.96 27.384 14.544 27.192C14.16 26.968 13.728 26.856 13.248 26.856C12.608 26.856 12.08 27.064 11.664 27.48C11.248 27.896 11.04 28.472 11.04 29.208V41.4L14.736 45H1.008L4.56 41.4V27L1.248 25.08L11.04 20.952V25.8C11.936 24.584 13.04 23.576 14.352 22.776C15.664 21.944 16.992 21.528 18.336 21.528ZM35.853 45.576C34.189 45.576 32.621 45.272 31.149 44.664C29.677 44.056 28.397 43.224 27.309 42.168C26.253 41.08 25.405 39.8 24.765 38.328C24.157 36.856 23.853 35.24 23.853 33.48C23.853 31.72 24.157 30.104 24.765 28.632C25.405 27.128 26.253 25.832 27.309 24.744C28.397 23.656 29.677 22.808 31.149 22.2C32.621 21.592 34.189 21.288 35.853 21.288C37.549 21.288 39.133 21.592 40.605 22.2C42.077 22.808 43.341 23.656 44.397 24.744C45.485 25.832 46.333 27.128 46.941 28.632C47.581 30.104 47.901 31.72 47.901 33.48C47.901 35.24 47.581 36.856 46.941 38.328C46.333 39.8 45.485 41.08 44.397 42.168C43.341 43.224 42.077 44.056 40.605 44.664C39.133 45.272 37.549 45.576 35.853 45.576ZM35.853 43.176C36.781 43.176 37.533 42.984 38.109 42.6C38.717 42.216 39.197 41.672 39.549 40.968C39.901 40.264 40.141 39.448 40.269 38.52C40.429 37.56 40.509 36.504 40.509 35.352V31.56C40.509 30.408 40.429 29.352 40.269 28.392C40.141 27.432 39.901 26.616 39.549 25.944C39.197 25.24 38.717 24.696 38.109 24.312C37.533 23.896 36.781 23.688 35.853 23.688C34.957 23.688 34.205 23.896 33.597 24.312C33.021 24.696 32.557 25.24 32.205 25.944C31.853 26.616 31.597 27.432 31.437 28.392C31.309 29.352 31.245 30.408 31.245 31.56V35.304C31.245 36.456 31.309 37.512 31.437 38.472C31.597 39.432 31.853 40.264 32.205 40.968C32.557 41.672 33.021 42.216 33.597 42.6C34.205 42.984 34.957 43.176 35.853 43.176ZM61.1126 45.912C59.4806 45.912 57.8486 45.64 56.2166 45.096C54.6166 44.584 53.0486 43.912 51.5126 43.08L53.4806 35.784C54.0246 36.68 54.6006 37.576 55.2086 38.472C55.8486 39.336 56.5206 40.12 57.2246 40.824C57.9606 41.528 58.7286 42.104 59.5286 42.552C60.3286 43 61.1606 43.224 62.0246 43.224C62.7606 43.224 63.3686 43.064 63.8486 42.744C64.3606 42.392 64.6166 41.848 64.6166 41.112C64.6166 40.792 64.5366 40.472 64.3766 40.152C64.2486 39.832 63.9766 39.496 63.5606 39.144C63.1766 38.76 62.6326 38.36 61.9286 37.944C61.2566 37.528 60.3606 37.064 59.2406 36.552C56.6166 35.304 54.7446 34.056 53.6246 32.808C52.5046 31.56 51.9446 30.088 51.9446 28.392C51.9446 27.272 52.1526 26.28 52.5686 25.416C52.9846 24.552 53.5606 23.816 54.2966 23.208C55.0646 22.568 55.9766 22.088 57.0326 21.768C58.0886 21.448 59.2406 21.288 60.4886 21.288C62.1526 21.288 63.7206 21.528 65.1926 22.008C66.6646 22.456 67.8166 22.92 68.6486 23.4L67.3526 30.36C66.5526 29.048 65.8166 27.96 65.1446 27.096C64.4726 26.232 63.8486 25.544 63.2726 25.032C62.6966 24.52 62.1366 24.168 61.5926 23.976C61.0486 23.752 60.5046 23.64 59.9606 23.64C59.0326 23.64 58.3126 23.864 57.8006 24.312C57.2886 24.76 57.0326 25.352 57.0326 26.088C57.0326 26.888 57.4166 27.576 58.1846 28.152C58.9526 28.696 60.1686 29.384 61.8326 30.216C63.2726 30.92 64.4886 31.592 65.4806 32.232C66.4726 32.84 67.2726 33.48 67.8806 34.152C68.5206 34.792 68.9846 35.464 69.2726 36.168C69.5606 36.872 69.7046 37.672 69.7046 38.568C69.7046 39.656 69.4966 40.648 69.0806 41.544C68.6646 42.44 68.0726 43.224 67.3046 43.896C66.5686 44.536 65.6726 45.032 64.6166 45.384C63.5606 45.736 62.3926 45.912 61.1126 45.912ZM87.2273 42.264C86.3633 43.192 85.2913 43.976 84.0113 44.616C82.7633 45.256 81.2913 45.576 79.5953 45.576C77.6433 45.576 76.1233 45.08 75.0353 44.088C73.9473 43.096 73.4033 41.8 73.4033 40.2C73.4033 38.056 74.5233 36.184 76.7633 34.584C79.0033 32.952 82.4913 31.72 87.2273 30.888V26.136C87.2273 25.08 87.0353 24.328 86.6513 23.88C86.2993 23.432 85.7713 23.208 85.0673 23.208C84.3953 23.208 83.8353 23.4 83.3873 23.784C82.9393 24.136 82.5393 24.6 82.1873 25.176C81.8673 25.752 81.5633 26.36 81.2753 27C80.9873 27.64 80.6673 28.248 80.3153 28.824C79.9633 29.4 79.5313 29.88 79.0193 30.264C78.5073 30.616 77.8673 30.792 77.0993 30.792C76.0753 30.792 75.2753 30.504 74.6992 29.928C74.1233 29.32 73.8353 28.536 73.8353 27.576C73.8353 26.872 74.0593 26.168 74.5073 25.464C74.9873 24.728 75.6913 24.072 76.6193 23.496C77.5793 22.92 78.7633 22.456 80.1713 22.104C81.5793 21.72 83.2113 21.528 85.0673 21.528C86.7633 21.528 88.1553 21.672 89.2433 21.96C90.3313 22.216 91.1953 22.68 91.8353 23.352C92.5073 24.024 92.9713 24.92 93.2273 26.04C93.4833 27.128 93.6113 28.504 93.6113 30.168V40.008L96.9713 42.12L87.2273 46.008V42.264ZM83.7713 41.544C84.8913 41.544 86.0433 41.176 87.2273 40.44V32.328C85.8833 32.84 84.7633 33.368 83.8672 33.912C83.0033 34.424 82.3153 34.952 81.8033 35.496C81.2913 36.008 80.9233 36.52 80.6993 37.032C80.5073 37.544 80.4113 38.04 80.4113 38.52C80.4113 39.416 80.6993 40.152 81.2753 40.728C81.8513 41.272 82.6833 41.544 83.7713 41.544ZM104.414 30.984C103.198 30.984 102.174 30.568 101.342 29.736C100.51 28.904 100.094 27.88 100.094 26.664C100.094 25.448 100.51 24.424 101.342 23.592C102.174 22.76 103.198 22.344 104.414 22.344C105.63 22.344 106.654 22.76 107.486 23.592C108.35 24.424 108.782 25.448 108.782 26.664C108.782 27.88 108.35 28.904 107.486 29.736C106.654 30.568 105.63 30.984 104.414 30.984ZM104.414 45.48C103.198 45.48 102.174 45.064 101.342 44.232C100.51 43.4 100.094 42.376 100.094 41.16C100.094 39.944 100.51 38.92 101.342 38.088C102.174 37.256 103.198 36.84 104.414 36.84C105.63 36.84 106.654 37.256 107.486 38.088C108.35 38.92 108.782 39.944 108.782 41.16C108.782 42.376 108.35 43.4 107.486 44.232C106.654 45.064 105.63 45.48 104.414 45.48ZM128.845 46.056V42.264C128.205 43.288 127.325 44.104 126.205 44.712C125.085 45.288 123.757 45.576 122.221 45.576C120.877 45.576 119.645 45.288 118.525 44.712C117.437 44.136 116.493 43.352 115.693 42.36C114.925 41.336 114.317 40.12 113.869 38.712C113.453 37.304 113.245 35.784 113.245 34.152C113.245 32.36 113.501 30.696 114.013 29.16C114.557 27.592 115.325 26.232 116.317 25.08C117.309 23.928 118.509 23.032 119.917 22.392C121.357 21.72 122.973 21.384 124.765 21.384C126.301 21.384 127.661 21.624 128.845 22.104V16.392L125.437 14.904L135.373 10.728V40.008L138.589 42.12L128.845 46.056ZM126.541 41.352C127.117 41.352 127.581 41.304 127.933 41.208C128.285 41.08 128.589 40.904 128.845 40.68V26.952C128.845 25.832 128.557 24.952 127.981 24.312C127.437 23.672 126.653 23.352 125.629 23.352C124.157 23.352 122.893 24.104 121.837 25.608C120.813 27.08 120.301 29.384 120.301 32.52C120.301 34.088 120.477 35.432 120.829 36.552C121.181 37.672 121.645 38.6 122.221 39.336C122.829 40.04 123.501 40.552 124.237 40.872C125.005 41.192 125.773 41.352 126.541 41.352ZM155.25 40.344C156.882 40.344 158.274 40.008 159.426 39.336C160.578 38.664 161.554 37.704 162.354 36.456C162.322 37.768 162.098 38.984 161.682 40.104C161.266 41.224 160.642 42.2 159.81 43.032C159.01 43.832 158.002 44.456 156.786 44.904C155.602 45.352 154.194 45.576 152.562 45.576C150.802 45.576 149.202 45.272 147.762 44.664C146.354 44.024 145.154 43.16 144.162 42.072C143.17 40.952 142.402 39.656 141.858 38.184C141.314 36.68 141.042 35.064 141.042 33.336C141.042 31.544 141.314 29.912 141.858 28.44C142.434 26.968 143.218 25.704 144.21 24.648C145.202 23.592 146.37 22.776 147.714 22.2C149.09 21.592 150.594 21.288 152.226 21.288C153.634 21.288 154.962 21.544 156.21 22.056C157.458 22.536 158.546 23.24 159.474 24.168C160.402 25.064 161.138 26.136 161.682 27.384C162.226 28.6 162.498 29.96 162.498 31.464H146.85C146.978 34.376 147.826 36.584 149.394 38.088C150.962 39.592 152.914 40.344 155.25 40.344ZM151.65 23.688C150.434 23.688 149.378 24.12 148.482 24.984C147.618 25.848 147.09 27.288 146.898 29.304H156.018C156.018 28.6 155.938 27.912 155.778 27.24C155.618 26.568 155.362 25.976 155.01 25.464C154.658 24.92 154.194 24.488 153.618 24.168C153.074 23.848 152.418 23.688 151.65 23.688ZM187.448 26.664L176.984 45.864L166.568 26.616L163.207 21.864H176.312L173.816 27.096L178.76 36.84L183.656 26.952L181.208 21.864H190.807L187.448 26.664Z"
-        }
-      })
-    ]
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1c796f16", module.exports)
-  }
-}
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(50);
-
-
-/***/ }),
-/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -17944,7 +17642,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(51);
+module.exports = __webpack_require__(40);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -17960,7 +17658,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 51 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /**
@@ -18691,6 +18389,301 @@ if (hadRuntime) {
   (function() { return this })() || Function("return this")()
 );
 
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "access-wrapper" }, [
+    _c("div", { staticClass: "access" }, [
+      _c("header", { class: { processing: _vm.processing } }, [_c("logo")], 1),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
+          }
+        },
+        [
+          _c("div", [
+            _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email"
+                }
+              ],
+              class: { error: _vm.errors.email },
+              attrs: { required: "", type: "email", id: "email" },
+              domProps: { value: _vm.email },
+              on: {
+                change: _vm.emailCheck,
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "error" }, [
+              _vm._v(_vm._s(_vm.errors.responses.email))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.password,
+                  expression: "password"
+                }
+              ],
+              class: [_vm.passwordState, { error: _vm.errors.password }],
+              attrs: { required: "", type: "password", id: "password" },
+              domProps: { value: _vm.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.password = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "error" }, [
+              _vm._v(_vm._s(_vm.errors.responses.repeat))
+            ])
+          ]),
+          _vm._v(" "),
+          !_vm.exists
+            ? [
+                _c("div", { staticClass: "slide-block" }, [
+                  _c("label", { attrs: { for: "repeat" } }, [
+                    _vm._v("Repeat your password")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.repeat,
+                        expression: "repeat"
+                      }
+                    ],
+                    class: [_vm.passwordState, { error: _vm.errors.repeat }],
+                    attrs: { required: "", type: "password", id: "repeat" },
+                    domProps: { value: _vm.repeat },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.repeat = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "slide-block" }, [
+                  _c("label", { attrs: { for: "name" } }, [
+                    _vm._v("First Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.firstName,
+                        expression: "firstName"
+                      }
+                    ],
+                    class: { error: _vm.errors.firstName },
+                    attrs: { required: "", type: "text", id: "name" },
+                    domProps: { value: _vm.firstName },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.firstName = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "error" }, [
+                    _vm._v(_vm._s(_vm.errors.responses.firstName))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "slide-block" }, [
+                  _c("label", { attrs: { for: "name" } }, [
+                    _vm._v("Last Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.lastName,
+                        expression: "lastName"
+                      }
+                    ],
+                    class: { error: _vm.errors.lastName },
+                    attrs: { required: "", type: "text", id: "name" },
+                    domProps: { value: _vm.lastName },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.lastName = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "error" }, [
+                    _vm._v(_vm._s(_vm.errors.responses.lastName))
+                  ])
+                ])
+              ]
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "hero-button",
+            attrs: { type: "submit" },
+            domProps: { value: _vm.exists ? "Login" : "Register" }
+          })
+        ],
+        2
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-366e118f", module.exports)
+  }
+}
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(11)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__(43)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Logo.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1c796f16", Component.options)
+  } else {
+    hotAPI.reload("data-v-1c796f16", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "svg",
+    {
+      attrs: {
+        width: "191",
+        height: "57",
+        viewBox: "0 0 191 57",
+        fill: "currentColor",
+        stroke: "none",
+        "stroke-width": "0",
+        xmlns: "http://www.w3.org/2000/svg"
+      }
+    },
+    [
+      _c("path", {
+        attrs: {
+          d:
+            "M18.336 21.528C19.648 21.528 20.688 21.88 21.456 22.584C22.224 23.256 22.608 24.2 22.608 25.416C22.608 26.6 22.24 27.48 21.504 28.056C20.8 28.632 19.936 28.92 18.912 28.92C18.24 28.92 17.664 28.824 17.184 28.632C16.704 28.408 16.24 28.168 15.792 27.912C15.376 27.624 14.96 27.384 14.544 27.192C14.16 26.968 13.728 26.856 13.248 26.856C12.608 26.856 12.08 27.064 11.664 27.48C11.248 27.896 11.04 28.472 11.04 29.208V41.4L14.736 45H1.008L4.56 41.4V27L1.248 25.08L11.04 20.952V25.8C11.936 24.584 13.04 23.576 14.352 22.776C15.664 21.944 16.992 21.528 18.336 21.528ZM35.853 45.576C34.189 45.576 32.621 45.272 31.149 44.664C29.677 44.056 28.397 43.224 27.309 42.168C26.253 41.08 25.405 39.8 24.765 38.328C24.157 36.856 23.853 35.24 23.853 33.48C23.853 31.72 24.157 30.104 24.765 28.632C25.405 27.128 26.253 25.832 27.309 24.744C28.397 23.656 29.677 22.808 31.149 22.2C32.621 21.592 34.189 21.288 35.853 21.288C37.549 21.288 39.133 21.592 40.605 22.2C42.077 22.808 43.341 23.656 44.397 24.744C45.485 25.832 46.333 27.128 46.941 28.632C47.581 30.104 47.901 31.72 47.901 33.48C47.901 35.24 47.581 36.856 46.941 38.328C46.333 39.8 45.485 41.08 44.397 42.168C43.341 43.224 42.077 44.056 40.605 44.664C39.133 45.272 37.549 45.576 35.853 45.576ZM35.853 43.176C36.781 43.176 37.533 42.984 38.109 42.6C38.717 42.216 39.197 41.672 39.549 40.968C39.901 40.264 40.141 39.448 40.269 38.52C40.429 37.56 40.509 36.504 40.509 35.352V31.56C40.509 30.408 40.429 29.352 40.269 28.392C40.141 27.432 39.901 26.616 39.549 25.944C39.197 25.24 38.717 24.696 38.109 24.312C37.533 23.896 36.781 23.688 35.853 23.688C34.957 23.688 34.205 23.896 33.597 24.312C33.021 24.696 32.557 25.24 32.205 25.944C31.853 26.616 31.597 27.432 31.437 28.392C31.309 29.352 31.245 30.408 31.245 31.56V35.304C31.245 36.456 31.309 37.512 31.437 38.472C31.597 39.432 31.853 40.264 32.205 40.968C32.557 41.672 33.021 42.216 33.597 42.6C34.205 42.984 34.957 43.176 35.853 43.176ZM61.1126 45.912C59.4806 45.912 57.8486 45.64 56.2166 45.096C54.6166 44.584 53.0486 43.912 51.5126 43.08L53.4806 35.784C54.0246 36.68 54.6006 37.576 55.2086 38.472C55.8486 39.336 56.5206 40.12 57.2246 40.824C57.9606 41.528 58.7286 42.104 59.5286 42.552C60.3286 43 61.1606 43.224 62.0246 43.224C62.7606 43.224 63.3686 43.064 63.8486 42.744C64.3606 42.392 64.6166 41.848 64.6166 41.112C64.6166 40.792 64.5366 40.472 64.3766 40.152C64.2486 39.832 63.9766 39.496 63.5606 39.144C63.1766 38.76 62.6326 38.36 61.9286 37.944C61.2566 37.528 60.3606 37.064 59.2406 36.552C56.6166 35.304 54.7446 34.056 53.6246 32.808C52.5046 31.56 51.9446 30.088 51.9446 28.392C51.9446 27.272 52.1526 26.28 52.5686 25.416C52.9846 24.552 53.5606 23.816 54.2966 23.208C55.0646 22.568 55.9766 22.088 57.0326 21.768C58.0886 21.448 59.2406 21.288 60.4886 21.288C62.1526 21.288 63.7206 21.528 65.1926 22.008C66.6646 22.456 67.8166 22.92 68.6486 23.4L67.3526 30.36C66.5526 29.048 65.8166 27.96 65.1446 27.096C64.4726 26.232 63.8486 25.544 63.2726 25.032C62.6966 24.52 62.1366 24.168 61.5926 23.976C61.0486 23.752 60.5046 23.64 59.9606 23.64C59.0326 23.64 58.3126 23.864 57.8006 24.312C57.2886 24.76 57.0326 25.352 57.0326 26.088C57.0326 26.888 57.4166 27.576 58.1846 28.152C58.9526 28.696 60.1686 29.384 61.8326 30.216C63.2726 30.92 64.4886 31.592 65.4806 32.232C66.4726 32.84 67.2726 33.48 67.8806 34.152C68.5206 34.792 68.9846 35.464 69.2726 36.168C69.5606 36.872 69.7046 37.672 69.7046 38.568C69.7046 39.656 69.4966 40.648 69.0806 41.544C68.6646 42.44 68.0726 43.224 67.3046 43.896C66.5686 44.536 65.6726 45.032 64.6166 45.384C63.5606 45.736 62.3926 45.912 61.1126 45.912ZM87.2273 42.264C86.3633 43.192 85.2913 43.976 84.0113 44.616C82.7633 45.256 81.2913 45.576 79.5953 45.576C77.6433 45.576 76.1233 45.08 75.0353 44.088C73.9473 43.096 73.4033 41.8 73.4033 40.2C73.4033 38.056 74.5233 36.184 76.7633 34.584C79.0033 32.952 82.4913 31.72 87.2273 30.888V26.136C87.2273 25.08 87.0353 24.328 86.6513 23.88C86.2993 23.432 85.7713 23.208 85.0673 23.208C84.3953 23.208 83.8353 23.4 83.3873 23.784C82.9393 24.136 82.5393 24.6 82.1873 25.176C81.8673 25.752 81.5633 26.36 81.2753 27C80.9873 27.64 80.6673 28.248 80.3153 28.824C79.9633 29.4 79.5313 29.88 79.0193 30.264C78.5073 30.616 77.8673 30.792 77.0993 30.792C76.0753 30.792 75.2753 30.504 74.6992 29.928C74.1233 29.32 73.8353 28.536 73.8353 27.576C73.8353 26.872 74.0593 26.168 74.5073 25.464C74.9873 24.728 75.6913 24.072 76.6193 23.496C77.5793 22.92 78.7633 22.456 80.1713 22.104C81.5793 21.72 83.2113 21.528 85.0673 21.528C86.7633 21.528 88.1553 21.672 89.2433 21.96C90.3313 22.216 91.1953 22.68 91.8353 23.352C92.5073 24.024 92.9713 24.92 93.2273 26.04C93.4833 27.128 93.6113 28.504 93.6113 30.168V40.008L96.9713 42.12L87.2273 46.008V42.264ZM83.7713 41.544C84.8913 41.544 86.0433 41.176 87.2273 40.44V32.328C85.8833 32.84 84.7633 33.368 83.8672 33.912C83.0033 34.424 82.3153 34.952 81.8033 35.496C81.2913 36.008 80.9233 36.52 80.6993 37.032C80.5073 37.544 80.4113 38.04 80.4113 38.52C80.4113 39.416 80.6993 40.152 81.2753 40.728C81.8513 41.272 82.6833 41.544 83.7713 41.544ZM104.414 30.984C103.198 30.984 102.174 30.568 101.342 29.736C100.51 28.904 100.094 27.88 100.094 26.664C100.094 25.448 100.51 24.424 101.342 23.592C102.174 22.76 103.198 22.344 104.414 22.344C105.63 22.344 106.654 22.76 107.486 23.592C108.35 24.424 108.782 25.448 108.782 26.664C108.782 27.88 108.35 28.904 107.486 29.736C106.654 30.568 105.63 30.984 104.414 30.984ZM104.414 45.48C103.198 45.48 102.174 45.064 101.342 44.232C100.51 43.4 100.094 42.376 100.094 41.16C100.094 39.944 100.51 38.92 101.342 38.088C102.174 37.256 103.198 36.84 104.414 36.84C105.63 36.84 106.654 37.256 107.486 38.088C108.35 38.92 108.782 39.944 108.782 41.16C108.782 42.376 108.35 43.4 107.486 44.232C106.654 45.064 105.63 45.48 104.414 45.48ZM128.845 46.056V42.264C128.205 43.288 127.325 44.104 126.205 44.712C125.085 45.288 123.757 45.576 122.221 45.576C120.877 45.576 119.645 45.288 118.525 44.712C117.437 44.136 116.493 43.352 115.693 42.36C114.925 41.336 114.317 40.12 113.869 38.712C113.453 37.304 113.245 35.784 113.245 34.152C113.245 32.36 113.501 30.696 114.013 29.16C114.557 27.592 115.325 26.232 116.317 25.08C117.309 23.928 118.509 23.032 119.917 22.392C121.357 21.72 122.973 21.384 124.765 21.384C126.301 21.384 127.661 21.624 128.845 22.104V16.392L125.437 14.904L135.373 10.728V40.008L138.589 42.12L128.845 46.056ZM126.541 41.352C127.117 41.352 127.581 41.304 127.933 41.208C128.285 41.08 128.589 40.904 128.845 40.68V26.952C128.845 25.832 128.557 24.952 127.981 24.312C127.437 23.672 126.653 23.352 125.629 23.352C124.157 23.352 122.893 24.104 121.837 25.608C120.813 27.08 120.301 29.384 120.301 32.52C120.301 34.088 120.477 35.432 120.829 36.552C121.181 37.672 121.645 38.6 122.221 39.336C122.829 40.04 123.501 40.552 124.237 40.872C125.005 41.192 125.773 41.352 126.541 41.352ZM155.25 40.344C156.882 40.344 158.274 40.008 159.426 39.336C160.578 38.664 161.554 37.704 162.354 36.456C162.322 37.768 162.098 38.984 161.682 40.104C161.266 41.224 160.642 42.2 159.81 43.032C159.01 43.832 158.002 44.456 156.786 44.904C155.602 45.352 154.194 45.576 152.562 45.576C150.802 45.576 149.202 45.272 147.762 44.664C146.354 44.024 145.154 43.16 144.162 42.072C143.17 40.952 142.402 39.656 141.858 38.184C141.314 36.68 141.042 35.064 141.042 33.336C141.042 31.544 141.314 29.912 141.858 28.44C142.434 26.968 143.218 25.704 144.21 24.648C145.202 23.592 146.37 22.776 147.714 22.2C149.09 21.592 150.594 21.288 152.226 21.288C153.634 21.288 154.962 21.544 156.21 22.056C157.458 22.536 158.546 23.24 159.474 24.168C160.402 25.064 161.138 26.136 161.682 27.384C162.226 28.6 162.498 29.96 162.498 31.464H146.85C146.978 34.376 147.826 36.584 149.394 38.088C150.962 39.592 152.914 40.344 155.25 40.344ZM151.65 23.688C150.434 23.688 149.378 24.12 148.482 24.984C147.618 25.848 147.09 27.288 146.898 29.304H156.018C156.018 28.6 155.938 27.912 155.778 27.24C155.618 26.568 155.362 25.976 155.01 25.464C154.658 24.92 154.194 24.488 153.618 24.168C153.074 23.848 152.418 23.688 151.65 23.688ZM187.448 26.664L176.984 45.864L166.568 26.616L163.207 21.864H176.312L173.816 27.096L178.76 36.84L183.656 26.952L181.208 21.864H190.807L187.448 26.664Z"
+        }
+      })
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1c796f16", module.exports)
+  }
+}
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 ],[12]);
