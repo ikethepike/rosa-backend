@@ -2,18 +2,24 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  background: $highlight;
+  background: #ececec;
   .access {
     width: 90%;
     margin: auto;
     color: #fff;
+    overflow-y: auto;
     max-width: 37rem;
+    max-height: 100vh;
+    position: relative;
     background: $highlight2;
     animation: slide-block-top 3s 1;
   }
   .access header {
     padding: 1.5rem 0;
     text-align: center;
+  }
+  .access header.processing {
+    animation: color-pulse 1s infinite;
   }
   .access form {
     display: block;
@@ -55,5 +61,11 @@
 @keyframes fade-in-highlight {
   0% {
     background: #fff;
+  }
+}
+
+@keyframes color-pulse {
+  50% {
+    color: $highlight;
   }
 }

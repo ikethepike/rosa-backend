@@ -13,7 +13,15 @@
 
 Route::view('/', 'login')->name('login');
 
+Route::group(['prefix' => 'user'], function () {
+    Route::post('exists/', 'UserController@exists');
+
+    Route::post('register', 'UserController@register');
+
+    Route::post('login', 'UserController@login');
+});
+
 Route::group(['middleware' => ['auth']], function () {
 });
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');

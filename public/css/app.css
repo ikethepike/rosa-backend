@@ -584,6 +584,8 @@ input[type='datetime-local'] {
   height: 3rem;
   color: #fff;
   background: none;
+  -webkit-transition: border 0.3s;
+  transition: border 0.3s;
   border-bottom: 2px solid #fff;
 }
 
@@ -598,7 +600,7 @@ input[type='search'].error,
 input[type='time'].error,
 input[type='week'].error,
 input[type='datetime-local'].error {
-  border: 0.0625rem solid #a90118;
+  border-color: #a90118;
 }
 
 input[type='text'].success,
@@ -634,7 +636,7 @@ input[type='week'].confirmation,
 input[type='datetime-local'].success,
 input[type='datetime-local'].match,
 input[type='datetime-local'].confirmation {
-  border: 0.0625rem solid #79c753;
+  border-color: #79c753;
 }
 
 /*
@@ -1519,14 +1521,17 @@ svg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background: #ee128b;
+  background: #ececec;
 }
 
 .access-wrapper .access {
   width: 90%;
   margin: auto;
   color: #fff;
+  overflow-y: auto;
   max-width: 37rem;
+  max-height: 100vh;
+  position: relative;
   background: #41409e;
   -webkit-animation: slide-block-top 3s 1;
           animation: slide-block-top 3s 1;
@@ -1535,6 +1540,11 @@ svg {
 .access-wrapper .access header {
   padding: 1.5rem 0;
   text-align: center;
+}
+
+.access-wrapper .access header.processing {
+  -webkit-animation: color-pulse 1s infinite;
+          animation: color-pulse 1s infinite;
 }
 
 .access-wrapper .access form {
@@ -1578,6 +1588,18 @@ svg {
 @keyframes fade-in-highlight {
   0% {
     background: #fff;
+  }
+}
+
+@-webkit-keyframes color-pulse {
+  50% {
+    color: #ee128b;
+  }
+}
+
+@keyframes color-pulse {
+  50% {
+    color: #ee128b;
   }
 }
 

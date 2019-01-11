@@ -18,16 +18,17 @@ input[type='datetime-local'] {
   height: 3rem;
   color: #fff;
   background: none;
+  transition: border 0.3s;
   border-bottom: 2px solid #fff;
 
   // States
   &.error {
-    border: $border-width $border-style $error;
+    border-color: $error;
   }
 
   &.success,
   &.match,
   &.confirmation {
-    border: $border-width $border-style $success;
+    border-color: $success;
   }
 }
