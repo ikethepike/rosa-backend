@@ -173,6 +173,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('user-icon', __webpack_req
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('lesson-icon', __webpack_require__(46));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('key-icon', __webpack_require__(65));
 
+// Elements
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('approve-user-tile', __webpack_require__(67));
+
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#rosa-app'
 });
@@ -18963,6 +18966,160 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e0bb98b2", module.exports)
+  }
+}
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(68)
+/* template */
+var __vue_template__ = __webpack_require__(69)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/elements/Approve-user-tile.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6f2cec43", Component.options)
+  } else {
+    hotAPI.reload("data-v-6f2cec43", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: {
+      required: true,
+      type: Object
+    }
+  },
+  data: function data() {
+    return {
+      processed: false
+    };
+  },
+  methods: {
+    approve: function approve() {
+      var _this = this;
+
+      axios.put("/user/approve", {
+        id: this.user.id
+      }).then(function (response) {
+        _this.processed = true;
+      });
+    },
+    destroy: function destroy() {
+      var _this2 = this;
+
+      axios.delete("/user/delete/" + this.user.id).then(function (response) {
+        _this2.processed = true;
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "approve-user-tile", class: { hidden: _vm.processed } },
+    [
+      _c("user-icon"),
+      _vm._v(" "),
+      _c("section", { staticClass: "bio" }, [
+        _c("h4", [
+          _c("span", { staticClass: "first" }, [
+            _vm._v(_vm._s(_vm.user.firstName))
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "last" }, [
+            _vm._v(_vm._s(_vm.user.lastName))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.user.email))])
+      ]),
+      _vm._v(" "),
+      _c("nav", [
+        _c("a", { staticClass: "button approve", on: { click: _vm.approve } }, [
+          _vm._v("Approve")
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "button delete", on: { click: _vm.destroy } }, [
+          _vm._v("Delete")
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6f2cec43", module.exports)
   }
 }
 

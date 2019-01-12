@@ -35,6 +35,12 @@ Vue.component('user-icon', require('./components/icons/User-icon.vue'))
 Vue.component('lesson-icon', require('./components/icons/Lesson-icon.vue'))
 Vue.component('key-icon', require('./components/icons/Key-icon.vue'))
 
+// Elements
+Vue.component(
+  'approve-user-tile',
+  require('./components/elements/Approve-user-tile.vue')
+)
+
 const app = new Vue({
   el: '#rosa-app',
 })
