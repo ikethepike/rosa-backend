@@ -5,8 +5,8 @@
 
 // Heading settings
 // -- Font Family
-$heading-font-family: $system;
-$heading-color: if(lightness($background) > 50, #000, #fff);
+$heading-font-family: $news-gothic;
+$heading-color: #000;
 
 // -- Sizes
 $desktop-heading-size: 4rem;
@@ -21,8 +21,7 @@ $desktop-heading-line-height: 120%;
 $mobile-heading-line-height: 110%;
 
 @mixin heading() {
-  display: inline-block;
-  color: $heading-color;
+  display: block;
   font-family: $heading-font-family;
   font-size: $desktop-heading-size;
   font-weight: $desktop-heading-weight;
@@ -61,13 +60,21 @@ h6 {
 
 // Sizings
 // -- Arrays
-$desktop-headings: false;
-$mobile-headings: false;
-
+$desktop-headings: (
+  1: $desktop-heading-size,
+  2: 3.5rem,
+  3: 2.5rem,
+  4: 1rem,
+);
+$mobile-headings: (
+  1: $mobile-heading-size,
+  2: 2.5rem,
+  3: 1.8rem,
+  4: 0.9rem,
+);
 // -- Automatic decrease
 $desktop-decrease: 0.75;
 $mobile-decrease: 0.75;
-
 // Sizers
 // -- Desktop
 // --  Construct sizes from desktop array, else decrease size by desktop-decrease
@@ -90,7 +97,6 @@ $mobile-decrease: 0.75;
     }
   }
 }
-
 // -- Mobile
 // -- Construct sizes from mobile array, else decrease size by mobile-decrease
 @media #{$mobile} {
@@ -111,4 +117,11 @@ $mobile-decrease: 0.75;
       }
     }
   }
+}
+h2 {
+  color: $highlight2;
+}
+h4 {
+  font-weight: 700;
+  text-transform: uppercase;
 }

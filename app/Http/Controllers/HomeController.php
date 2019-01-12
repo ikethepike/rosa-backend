@@ -19,6 +19,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home')->with(['user' => auth()->user()]);
+        return view('home')->with(['user' => auth()->user(), 'hasUsersToApprove' => true]);
     }
 }

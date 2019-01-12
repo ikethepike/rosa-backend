@@ -201,6 +201,17 @@ textarea {
   background-color: #ee128b;
 }
 
+*.highlight2,
+*.highlight2-color {
+  color: #41409e;
+  stroke: #41409e;
+}
+
+*.highlight2-bg,
+*.highlight2-background {
+  background-color: #41409e;
+}
+
 /*
 * Borders
 * This file codes for the appearance of general borders in your app
@@ -280,6 +291,34 @@ textarea {
 *
 */
 
+@font-face {
+  font-family: 'News Gothic';
+  src: url(/fonts/NewsGothicStd-Oblique.woff2?aa119ce8505bed9113c3bdb1ba779f7a) format("woff2"), url(/fonts/NewsGothicStd-Oblique.woff?c00cdd33b4983d3138ee0436a788e1fe) format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'News Gothic';
+  src: url(/fonts/NewsGothicStd.woff2?dd7e303401a4699d15bdd0dcef658e9d) format("woff2"), url(/fonts/NewsGothicStd.woff?bafb8dc149590b9bcc2980faf96ba611) format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'News Gothic';
+  src: url(/fonts/NewsGothicStd-BoldOblique.woff2?ec169e27e0c7533f01f368b99e30a418) format("woff2"), url(/fonts/NewsGothicStd-BoldOblique.woff?7b6a2d2d277ccbc1d9471ad3be8d6476) format("woff");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'News Gothic';
+  src: url(/fonts/NewsGothicStd-Bold.woff2?3436fcc91ee4d2829b4d7cad3af94721) format("woff2"), url(/fonts/NewsGothicStd-Bold.woff?ea1ba757fc8c71adce1fa8d74550605c) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
 /*
 * Headings
 * This file contains the styling rules for headings
@@ -291,9 +330,8 @@ h3,
 h4,
 h5,
 h6 {
-  display: inline-block;
-  color: #000;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  display: block;
+  font-family: "News Gothic", sans-serif;
   font-size: 4rem;
   font-weight: 700;
   line-height: 120%;
@@ -338,55 +376,48 @@ h6 span {
 */
 
 @media screen and (min-width: 60rem) {
+  h1 {
+    font-size: 4rem;
+  }
+
   h2 {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 
   h3 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   h4 {
-    font-size: 3rem;
-  }
-
-  h5 {
-    font-size: 3rem;
-  }
-
-  h6 {
-    font-size: 3rem;
-  }
-
-  h7 {
-    font-size: 3rem;
+    font-size: 1rem;
   }
 }
 
 @media screen and (max-width: 60rem) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
   h2 {
-    font-size: 1.875rem;
+    font-size: 2.5rem;
   }
 
   h3 {
-    font-size: 1.40625rem;
+    font-size: 1.8rem;
   }
 
   h4 {
-    font-size: 1.0546875rem;
+    font-size: 0.9rem;
   }
+}
 
-  h5 {
-    font-size: 0.79101563rem;
-  }
+h2 {
+  color: #41409e;
+}
 
-  h6 {
-    font-size: 0.59326172rem;
-  }
-
-  h7 {
-    font-size: 0.44494629rem;
-  }
+h4 {
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 /*
@@ -395,7 +426,7 @@ h6 span {
 */
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "News Gothic", sans-serif;
   font-size: 1rem;
   line-height: 150%;
   color: #000;
@@ -554,7 +585,7 @@ body {
 
 input:not(input[type='submit']),
 textarea {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "News Gothic", sans-serif;
   min-height: 3.5rem;
   font-size: 1rem;
 }
@@ -695,7 +726,7 @@ input[type='checkbox'],
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "News Gothic", sans-serif;
   text-transform: uppercase;
   background: #232355;
 }
@@ -1406,96 +1437,6 @@ input[type='checkbox'],
 }
 
 /*
-* Avatar templates
-* A quick, dust-off template for avatars in three different sizes
-*
-*/
-
-.avatar,
-.avatar-large,
-.avatar-medium,
-.avatar-small {
-  position: relative;
-  border: none;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  border-radius: 100%;
-}
-
-.avatar img,
-.avatar-large img,
-.avatar-medium img,
-.avatar-small img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  min-height: 100%;
-  min-width: 100%;
-}
-
-.avatar:empty,
-.avatar-large:empty,
-.avatar-small:empty,
-.avatar-medium:empty {
-  display: inline-block;
-}
-
-/*
-* Small avatars
-*/
-
-.avatar-small,
-.small-avatar {
-  height: 3.125rem;
-  width: 3.125rem;
-}
-
-@media screen and (max-width: 60rem) {
-  .avatar-small,
-  .small-avatar {
-    height: 2.5rem;
-    width: 2.5rem;
-  }
-}
-
-.avatar-medium,
-.medium-avatar {
-  height: 6.25rem;
-  width: 6.25rem;
-}
-
-@media screen and (max-width: 60rem) {
-  .avatar-medium,
-  .medium-avatar {
-    height: 5rem;
-    width: 5rem;
-  }
-}
-
-/* Large avatars */
-
-.avatar-large {
-  height: 12.5rem;
-  width: 12.5rem;
-}
-
-@media screen and (max-width: 60rem) {
-  .avatar-large {
-    height: 10rem;
-    width: 10rem;
-  }
-}
-
-/*
 * Icon rules 
 * Rules for SVG icons
 */
@@ -1506,6 +1447,131 @@ svg {
 
 .icon-hover {
   stroke: #ee128b;
+}
+
+.two-pane-view {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.two-pane-view .sidebar {
+  width: 20%;
+  height: 100%;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #fff;
+  min-width: 15rem;
+  max-width: 30rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  background: #41409e;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.two-pane-view .sidebar .logo {
+  width: 50%;
+}
+
+.two-pane-view .sidebar .links a {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1em;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.two-pane-view .sidebar .links a svg {
+  max-width: 1em;
+  max-height: 1em;
+  margin-right: 0.75em;
+}
+
+.two-pane-view .sidebar .links a.notification {
+  -webkit-animation: notification-pulse 4s infinite;
+          animation: notification-pulse 4s infinite;
+}
+
+.two-pane-view .content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  padding: 4rem 2.5rem 0 2.5rem;
+  border: 1rem solid #41409e;
+}
+
+.stats {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.stats > div {
+  width: 25%;
+}
+
+.toolkit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.toolkit > a {
+  width: 50%;
+  height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 20rem;
+  max-height: 10rem;
+  color: #41409e;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 1rem;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  border: 2px solid #41409e;
+}
+
+.toolkit svg {
+  height: 30%;
+}
+
+.toolkit > a:hover {
+  color: #fff;
+  background: #41409e;
+}
+
+@-webkit-keyframes notification-pulse {
+  50% {
+    color: #bb4586;
+  }
+}
+
+@keyframes notification-pulse {
+  50% {
+    color: #bb4586;
+  }
 }
 
 /* Page imports, index of all pages */

@@ -30,6 +30,10 @@ window.lodash = lodash
 Vue.component('access', require('./components/Access.vue'))
 Vue.component('logo', require('./components/Logo.vue'))
 
+// Icons
+Vue.component('user-icon', require('./components/icons/User-icon.vue'))
+Vue.component('lesson-icon', require('./components/icons/Lesson-icon.vue'))
+
 const app = new Vue({
   el: '#rosa-app',
 })

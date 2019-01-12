@@ -40,6 +40,17 @@ $success: $green-flash;
   background-color: $highlight;
 }
 
+*.highlight2,
+*.highlight2-color {
+  color: $highlight2;
+  stroke: $highlight2;
+}
+
+*.highlight2-bg,
+*.highlight2-background {
+  background-color: $highlight2;
+}
+
 // Secondary imports
 // -- Borders
 @import 'borders';
