@@ -3,6 +3,6 @@
   @if(count($approve) === 0)
     <h3>No users to approve!</h3>
   @else 
-    There are users to approve 
+    <approval-list :preload="{{ json_encode($approve) }}"></approval-list>
   @endif
 @endsection

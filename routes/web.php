@@ -41,4 +41,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('lessons', 'HomeController@lessons')->name('lessons');
 
     Route::get('keys', 'HomeController@keys')->name('keys');
+
+    Route::get('users/to-approve', 'UserController@toApprove');
+
+    Route::delete('user/destroy/{id}', 'UserController@destroy');
+
+    Route::put('user/approve', 'UserController@approve');
 });

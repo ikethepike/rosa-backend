@@ -1,5 +1,5 @@
 <template>
-  <div class="approve-user-tile" :class="{ hidden : processed }">
+  <li class="approve-user-tile slide-block" :class="{ hidden : processed }">
     <user-icon></user-icon>
     <section class="bio">
       <h4>
@@ -13,7 +13,7 @@
       <a class="button approve" @click="approve">Approve</a>
       <a class="button delete" @click="destroy">Delete</a>
     </nav>
-  </div>
+  </li>
 </template>
 <script>
 export default {
@@ -33,15 +33,29 @@ export default {
           id: this.user.id,
         })
         .then(response => {
-          this.processed = true
+          this.$emit('refresh')
         })
     },
     destroy() {
-      axios.delete(`/user/delete/${this.user.id}`).then(response => {
-        this.processed = true
+      axios.delete(`/user/destroy/${this.user.id}`).then(response => {
+        this.$emit('refresh')
       })
     },
   },
 }
 </script>
+<style lang="scss" scoped>
+.approve-user-tile {
+  width: 100%;
+  display: flex;
+  padding: 1rem 0;
+  svg {
+    max-height: 4rem;
+  }
+  nav {
+    margin-left: auto;
+    align-self: center;
+  }
+}
+</style>
 

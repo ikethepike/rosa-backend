@@ -749,13 +749,21 @@ input[type='checkbox'],
 */
 
 .button {
-  display: inline-block;
-  border: 0.0625rem solid #fff;
-  background-color: transparent;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   color: #fff;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0.5rem 2rem;
   -webkit-transition: background 0.4s;
   transition: background 0.4s;
-  height: 3.5rem;
+  background-color: #ee128b;
+  height: 2rem;
 }
 
 .button:hover {
@@ -775,7 +783,7 @@ input[type='checkbox'],
 
 @media screen and (max-width: 60rem) {
   .button {
-    height: 3rem;
+    height: 1.5rem;
   }
 }
 

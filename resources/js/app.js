@@ -40,6 +40,10 @@ Vue.component(
   'approve-user-tile',
   require('./components/elements/Approve-user-tile.vue')
 )
+Vue.component(
+  'approval-list',
+  require('./components/elements/Approval-list.vue')
+)
 
 const app = new Vue({
   el: '#rosa-app',

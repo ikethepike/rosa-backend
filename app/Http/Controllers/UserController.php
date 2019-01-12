@@ -34,4 +34,19 @@ class UserController extends Controller
 
         return abort(401);
     }
+
+    public function toApprove()
+    {
+        return User::where('approved', false)->where('staff', true)->get();
+    }
+
+    public function destroy(Request $request)
+    {
+        User::findOrFail($request->id)->delete();
+    }
+
+    public function approve(Request $request)
+    {
+        User::findOrFail($request->id)->update(['approved' => true]);
+    }
 }

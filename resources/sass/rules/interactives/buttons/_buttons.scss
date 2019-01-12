@@ -5,15 +5,17 @@
 
 // Button settings
 // -- Sizes
-$desktop-button-size: 3.5rem;
-$mobile-button-size: 3rem;
+$desktop-button-size: 2rem;
+$mobile-button-size: 1.5rem;
 
 .button {
-  display: inline-block;
-  border: $border;
-  background-color: transparent;
+  align-items: center;
+  display: inline-flex;
   color: $border-color;
+  justify-content: center;
+  padding: 0.5rem 2rem;
   transition: background 0.4s;
+  background-color: $highlight;
   height: $desktop-button-size;
   // States
   // -- Hover
