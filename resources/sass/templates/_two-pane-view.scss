@@ -25,6 +25,9 @@
       position: relative;
       align-items: center;
     }
+    a:hover {
+      color: $highlight;
+    }
     .links a svg {
       max-width: 1em;
       max-height: 1em;
@@ -62,8 +65,8 @@
     max-width: 20rem;
     max-height: 10rem;
     color: $highlight2;
-    align-items: center;
     margin-right: 1rem;
+    align-items: center;
     justify-content: space-around;
     border: 2px solid $highlight2;
   }

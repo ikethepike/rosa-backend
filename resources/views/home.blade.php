@@ -1,9 +1,4 @@
-@php 
-
-    $date = new DateTime();
-
-
-@endphp 
+@php($date = new DateTime())
 @extends('templates.two-pane')
 @section('content-pane')
     <header class="stats">
@@ -38,14 +33,19 @@
     </header>
 
     <nav class="toolkit">
-        <a href="{{ url('/home/lessons') }}">
+        <a href="{{ url()->route('lessons') }}">
             <h4>Create a lesson</h4>
             <lesson-icon></lesson-icon> 
         </a>
 
-        <a href="{{ url('/home/users') }}">
+        <a href="{{ url()->route('users') }}">
             <h4>Approve users</h4>
             <user-icon></user-icon> 
+        </a>
+
+        <a href="{{ url()->route('keys') }}">
+            <h4>API keys</h4>
+            <key-icon></key-icon> 
         </a>
 
     </nav>

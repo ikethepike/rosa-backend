@@ -34,5 +34,11 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('home', 'HomeController@index')->name('home');
+
+    Route::get('users', 'HomeController@users')->name('users');
+
+    Route::get('lessons', 'HomeController@lessons')->name('lessons');
+
+    Route::get('keys', 'HomeController@keys')->name('keys');
 });
-Route::get('/home', 'HomeController@index')->name('home');

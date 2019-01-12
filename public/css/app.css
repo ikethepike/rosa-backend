@@ -1494,6 +1494,10 @@ svg {
           align-items: center;
 }
 
+.two-pane-view .sidebar a:hover {
+  color: #ee128b;
+}
+
 .two-pane-view .sidebar .links a svg {
   max-width: 1em;
   max-height: 1em;
@@ -1544,10 +1548,10 @@ svg {
   max-width: 20rem;
   max-height: 10rem;
   color: #41409e;
+  margin-right: 1rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-right: 1rem;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   border: 2px solid #41409e;

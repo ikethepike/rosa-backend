@@ -10,14 +10,18 @@
         </header>
 
         <section class="links">
-            <a href="{{ url('home/lessons') }}">
+            <a href="{{ url()->route('lessons') }}">
                 <lesson-icon></lesson-icon>
                 <span>Lessons</span>
             </a>
-            <a class='{{ $hasUsersToApprove ? 'notification'  : ''}}' href="{{ url('home/users') }}">
+            <a class='{{ isset($hasUserToApprove) && $hasUserToApprove ? 'notification'  : ''}}' href="{{ url()->route('users') }}">
                 <user-icon></user-icon>
                 <span>Users</span>
-            </di>
+            </a>
+            <a href="{{ url()->route('keys') }}">
+                <key-icon></key-icon>
+                <span>API Keys</span>
+            </a>
         </section>
 
         <section class="bottom">
