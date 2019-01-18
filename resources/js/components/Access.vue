@@ -118,8 +118,8 @@ export default {
         .post(`/user/register`, {
           email: this.email,
           password: this.password,
-          firstName: this.firstName,
-          lastName: this.lastName,
+          first_name: this.firstName,
+          last_name: this.lastName,
         })
         .then(response => {
           return (window.location = `${Rosa.url}/home`)

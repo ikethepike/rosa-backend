@@ -9,7 +9,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Rosa\User::class, 50)->create();
+        factory(Rosa\User::class, 50)->create()->each(function ($user) {
+            $user->lessons()->save(factory(Rosa\Lesson::class)->make());
+        });
         // $this->call(UsersTableSeeder::class);
     }
 }

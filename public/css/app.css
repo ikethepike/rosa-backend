@@ -586,7 +586,7 @@ body {
 input:not(input[type='submit']),
 textarea {
   font-family: "News Gothic", sans-serif;
-  min-height: 3.5rem;
+  min-height: 3rem;
   font-size: 1rem;
 }
 
@@ -612,12 +612,12 @@ input[type='datetime-local'] {
   width: 100%;
   border: none;
   resize: none;
-  height: 3rem;
-  color: #fff;
+  color: #41409e;
   background: none;
   -webkit-transition: border 0.3s;
   transition: border 0.3s;
-  border-bottom: 2px solid #fff;
+  height: 3rem;
+  border-bottom: 2px solid #41409e;
 }
 
 input[type='text'].error,
@@ -756,10 +756,10 @@ input[type='checkbox'],
   display: -ms-inline-flexbox;
   display: inline-flex;
   color: #fff;
+  padding: 0.5rem 2rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 0.5rem 2rem;
   -webkit-transition: background 0.4s;
   transition: background 0.4s;
   background-color: #ee128b;
@@ -785,6 +785,18 @@ input[type='checkbox'],
   .button {
     height: 1.5rem;
   }
+}
+
+.button-outlined {
+  padding: 0 2rem;
+  background: none;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: #41409e;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 2px solid #41409e;
+  height: 3rem;
 }
 
 /*
@@ -1522,8 +1534,12 @@ svg {
   height: 100%;
   overflow-y: auto;
   position: relative;
-  padding: 4rem 2.5rem 0 2.5rem;
+  padding: 0 2.5rem 0 2.5rem;
   border: 1rem solid #41409e;
+}
+
+.two-pane-view .content > *:first-child {
+  margin-top: 4rem;
 }
 
 .stats {
@@ -1588,6 +1604,83 @@ svg {
 
 /* Page imports, index of all pages */
 
+#editor-view {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+#editor-view #editor-body {
+  width: 100%;
+  padding: 0 2rem;
+  max-width: calc(100% - 5rem);
+}
+
+#editor-view #editor-body::before {
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.3);
+  content: 'Creating a new class';
+}
+
+#editor-view #editor-toolbar {
+  width: 2.5rem;
+  height: 10rem;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+#editor-view input,
+#editor-view textarea {
+  color: #000;
+  border: none;
+}
+
+#editor-view #main-header #title {
+  height: 4rem;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: #41409e;
+  font-family: "News Gothic", sans-serif;
+}
+
+#editor-view .CodeMirror,
+#editor-view .CodeMirror-scroll {
+  min-height: 200px;
+}
+
+.keys-view form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.keys-view .tile {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1rem;
+  background: #fff;
+  padding: 1rem 2rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.keys-view .tile .name {
+  font-weight: 400;
+}
+
+.keys-view .tile a {
+  color: #ee128b;
+}
+
 /*
 * Elements
 * Elements are specific elements that are view-agnostic and reusable anywhere
@@ -1638,7 +1731,9 @@ svg {
 }
 
 .access-wrapper .access input {
+  color: #fff;
   display: block;
+  border-color: #fff;
 }
 
 .access-wrapper form > div {

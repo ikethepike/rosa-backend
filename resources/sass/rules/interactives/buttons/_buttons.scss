@@ -12,8 +12,8 @@ $mobile-button-size: 1.5rem;
   align-items: center;
   display: inline-flex;
   color: $border-color;
-  justify-content: center;
   padding: 0.5rem 2rem;
+  justify-content: center;
   transition: background 0.4s;
   background-color: $highlight;
   height: $desktop-button-size;
@@ -38,4 +38,16 @@ $mobile-button-size: 1.5rem;
   @media #{$mobile} {
     height: $mobile-button-size;
   }
+}
+
+.button-outlined {
+  padding: 0 2rem;
+  background: none;
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: $highlight2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 2px solid $highlight2;
+  height: $desktop-input-height;
 }

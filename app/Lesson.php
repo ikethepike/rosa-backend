@@ -8,4 +8,10 @@ class Lesson extends Model
 {
     // fillable
     protected $fillable = ['masthead', 'title', 'text'];
+
+    /* Relations */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

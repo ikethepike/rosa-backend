@@ -1,4 +1,4 @@
 @extends('templates.two-pane')
 @section('content-pane')
-  Keys!
+  <keys-view></keys-view>
 @endsection

@@ -27,7 +27,7 @@ class UserController extends Controller
     public function login(LoginRequest $request)
     {
         if (auth()->attempt($request->all())) {
-            auth()->login(User::where('email', $request->email)->first());
+            auth()->login(User::where('email', $request->email)->first(), true);
 
             return response(200);
         }

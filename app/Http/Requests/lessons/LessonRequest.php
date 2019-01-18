@@ -1,10 +1,10 @@
 <?php
 
-namespace Rosa\Http\Requests\User;
+namespace Rosa\Http\Requests\lessons;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class LessonRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required',
-            'last_name'  => 'required',
-            'email'      => 'email|required|unique:users',
-            'password'   => 'min:8|required',
+            'title'    => 'required|min:2',
+            'text'     => 'required',
+            'snippets' => 'array|nullable',
         ];
     }
 }

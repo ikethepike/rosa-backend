@@ -1,0 +1,47 @@
+#editor-view {
+  height: 100%;
+  display: flex;
+  position: relative;
+  #editor-body {
+    width: 100%;
+    padding: 0 2rem;
+    max-width: calc(100% - 5rem);
+  }
+  #editor-body::before {
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.3);
+    content: 'Creating a new class';
+  }
+  #editor-toolbar {
+    width: 2.5rem;
+    height: 10rem;
+    background: #fff;
+    border: 1px solid #ccc;
+  }
+
+  input,
+  textarea {
+    color: #000;
+    border: none;
+  }
+
+  #main-header {
+    #title {
+      height: 4rem;
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 0.5em;
+      color: $highlight2;
+      font-family: $heading-font-family;
+    }
+  }
+
+  // Autogrowing
+  .CodeMirror,
+  .CodeMirror-scroll {
+    min-height: 200px;
+  }
+}

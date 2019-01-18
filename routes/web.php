@@ -47,4 +47,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('user/destroy/{id}', 'UserController@destroy');
 
     Route::put('user/approve', 'UserController@approve');
+
+    Route::group(['prefix' => 'resource'], function () {
+        Route::resources([
+            'lessons' => 'LessonController',
+        ]);
+    });
 });

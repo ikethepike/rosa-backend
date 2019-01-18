@@ -38,6 +38,7 @@ export default {
 .approval-list {
   header {
     top: 0;
+    z-index: 1;
     width: 100%;
     padding: 1rem 0;
     position: sticky;

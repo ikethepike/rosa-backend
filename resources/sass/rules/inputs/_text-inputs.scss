@@ -15,11 +15,11 @@ input[type='datetime-local'] {
   width: 100%;
   border: none;
   resize: none;
-  height: 3rem;
-  color: #fff;
+  color: $highlight2;
   background: none;
   transition: border 0.3s;
-  border-bottom: 2px solid #fff;
+  height: $desktop-input-height;
+  border-bottom: 2px solid $highlight2;
 
   // States
   &.error {

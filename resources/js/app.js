@@ -29,6 +29,7 @@ window.lodash = lodash
 
 Vue.component('access', require('./components/Access.vue'))
 Vue.component('logo', require('./components/Logo.vue'))
+Vue.component('keys-view', require('./components/views/Keys-view.vue'))
 
 // Icons
 Vue.component('user-icon', require('./components/icons/User-icon.vue'))
@@ -44,6 +45,10 @@ Vue.component(
   'approval-list',
   require('./components/elements/Approval-list.vue')
 )
+
+// Views
+Vue.component('editor-view', require('./components/views/Editor-view.vue'))
+Vue.component('lessons-list', require('./components/views/Lessons-list.vue'))
 
 const app = new Vue({
   el: '#rosa-app',
