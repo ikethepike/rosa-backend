@@ -33,9 +33,14 @@
     </header>
 
     <nav class="toolkit">
-        <a href="{{ url()->route('lessons') }}">
+        <a @click="toggleEditor(true)">
             <h4>Create a lesson</h4>
             <lesson-icon></lesson-icon> 
+        </a>
+
+        <a href="{{ url()->route('lessons') }}">
+            <h4>Manage lessons</h4>
+            <science-icon></science-icon>
         </a>
 
         <a href="{{ url()->route('users') }}">
