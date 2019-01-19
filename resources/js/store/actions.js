@@ -27,3 +27,12 @@ export const editorDarkMode = (
 ) => {
   return commit('editorDarkMode', darkMode)
 }
+
+/**
+ * toast
+ * @param { state, commit, rootState } param
+ * @param {*} toast
+ */
+export const toast = ({ commit }, toast = null) => {
+  return commit('toast', toast)
+}

@@ -4,4 +4,5 @@ export default {
     editing: null,
     darkMode: false,
   },
+  toast: null,
 }

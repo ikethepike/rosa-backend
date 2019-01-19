@@ -10,7 +10,7 @@
       <ul>
         <li class="slide-block tile" v-for="key in keys" :key="key.secret">
           <span class="name">{{ key.name }}</span>
-          <span class="secret">{{ key.secret }}</span>
+          <span class="expires" title="expires">{{ key.expires_at }}</span>
           <a role="button" @click="destroy(key.id)">Destroy</a>
         </li>
       </ul>
@@ -22,19 +22,26 @@ export default {
   data: () => ({
     name: '',
     keys: [],
+    token: '',
   }),
   methods: {
     refresh() {
-      axios.get('/oauth/clients').then(response => (this.keys = response.data))
+      axios
+        .get('/oauth/personal-access-tokens')
+        .then(response => (this.keys = response.data))
     },
     create() {
       axios
-        .post('/oauth/clients', {
+        .post('/oauth/personal-access-tokens', {
           name: this.name,
-          errors: [],
-          redirect: 'http://test.com',
+          scopes: [],
         })
-        .then(this.refresh)
+        .then(response => {
+          this.name = ''
+          this.token = response.data.accessToken
+          this.$store.dispatch('toast', `Your token is: \n ${this.token}`)
+          this.refresh()
+        })
     },
     destroy(id) {
       axios.delete(`/oauth/clients/${id}`).then(() => this.refresh())

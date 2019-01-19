@@ -2,6 +2,7 @@
 
 namespace Rosa\Http\Controllers;
 
+use Storage;
 use Rosa\Lesson;
 use Illuminate\Http\Request;
 use Rosa\Http\Requests\lessons\LessonRequest;
@@ -15,7 +16,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        return Lesson::with('user')->get();
+        return Lesson::with('user')->orderBy('id', 'DESC')->get();
     }
 
     /**
@@ -64,5 +65,13 @@ class LessonController extends Controller
     public function destroy($id)
     {
         Lesson::delete($id);
+    }
+
+    public function masthead(Request $request)
+    {
+        $url = Storage::putFile('mastheads', $request->file('masthead'));
+        if ($url) {
+            return Storage::url($url);
+        }
     }
 }

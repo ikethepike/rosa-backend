@@ -24,9 +24,11 @@ class LessonRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'    => 'required|min:2',
-            'text'     => 'required',
-            'snippets' => 'array|nullable',
+            'id'        => 'integer|nullable',
+            'title'     => 'required|min:2',
+            'text'      => 'required',
+            'masthead'  => 'nullable',
+            'snippets'  => 'array|nullable',
         ];
     }
 }

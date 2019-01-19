@@ -24,3 +24,12 @@ export const editorEditing = state => {
 export const editor = state => {
   return state.editor
 }
+
+/**
+ * toast
+ * @param {state, getters, rootState, rootGetters}
+ * @return state.toast
+ */
+export const toast = state => {
+  return state.toast
+}

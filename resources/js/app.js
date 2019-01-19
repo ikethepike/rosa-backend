@@ -52,6 +52,10 @@ Vue.component(
   require('./components/elements/Approval-list.vue')
 )
 Vue.component('lesson-tile', require('./components/elements/Lesson-tile.vue'))
+Vue.component(
+  'toast-message',
+  require('./components/elements/Toast-message.vue')
+)
 
 // Views
 Vue.component('editor-view', require('./components/views/Editor-view.vue'))

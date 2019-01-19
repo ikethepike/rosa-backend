@@ -23,3 +23,11 @@ export const editLesson = (state, id) => {
 export const editorDarkMode = (state, active) => {
   return Vue.set(state.editor, 'darkMode', active)
 }
+
+/**
+ * toast mutation
+ * @param toast
+ */
+export const toast = (state, toast) => {
+  return (state.toast = toast)
+}

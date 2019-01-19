@@ -11,6 +11,18 @@
 |
 */
 
+Route::get('/test', function () {
+    $user = Rosa\User::find(1);
+
+    // Creating a token without scopes...
+    $token = $user->createToken('Token Name')->accessToken;
+
+    // Creating a token with scopes...
+    $token = $user->createToken('My Token', ['place-orders'])->accessToken;
+
+    return $token;
+});
+
 Route::get('/', function () {
     if (auth()->check()) {
         return redirect()->route('home');
@@ -53,4 +65,6 @@ Route::group(['middleware' => ['auth']], function () {
             'lessons' => 'LessonController',
         ]);
     });
+
+    Route::post('lessons/masthead', 'LessonController@masthead');
 });
