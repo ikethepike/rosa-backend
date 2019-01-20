@@ -11640,7 +11640,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('toast-message', __webpack
 
 // Views
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('editor-view', __webpack_require__(86));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('lessons-list', __webpack_require__(113));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('planner-view', __webpack_require__(131));
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#rosa-app',
@@ -28845,6 +28845,7 @@ module.exports = function(module) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__getters__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mutations__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__actions__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_planning__ = __webpack_require__(134);
 
 
 
@@ -28855,12 +28856,17 @@ module.exports = function(module) {
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["default"]);
 
+
+
 // Initialize Vuex
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["default"].Store({
   state: __WEBPACK_IMPORTED_MODULE_2__state__["a" /* default */],
   getters: __WEBPACK_IMPORTED_MODULE_3__getters__,
   mutations: __WEBPACK_IMPORTED_MODULE_4__mutations__,
-  actions: __WEBPACK_IMPORTED_MODULE_5__actions__
+  actions: __WEBPACK_IMPORTED_MODULE_5__actions__,
+  modules: {
+    planning: __WEBPACK_IMPORTED_MODULE_6__modules_planning__["a" /* default */]
+  }
 }));
 
 /***/ }),
@@ -40133,15 +40139,38 @@ if (false) {
 }
 
 /***/ }),
-/* 113 */
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(114)
+var __vue_script__ = __webpack_require__(132)
 /* template */
-var __vue_template__ = __webpack_require__(115)
+var __vue_template__ = __webpack_require__(133)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -40158,7 +40187,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/views/Lessons-list.vue"
+Component.options.__file = "resources/js/components/views/Planner-view.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -40167,9 +40196,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-19dba01c", Component.options)
+    hotAPI.createRecord("data-v-4a0880ec", Component.options)
   } else {
-    hotAPI.reload("data-v-19dba01c", Component.options)
+    hotAPI.reload("data-v-4a0880ec", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -40180,11 +40209,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -40199,65 +40231,184 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    preload: {
-      type: Array
-    }
-  },
   data: function data() {
     return {
-      urls: {
-        create: Rosa.url + '/create'
-      },
-      lessons: []
+      week: null,
+      fetched: false,
+      processing: false
     };
   },
-  methods: {
-    refreshLessons: function refreshLessons() {
-      var _this = this;
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapGetters"])({
+    term: 'planning/term'
+  }), {
+    weeks: function weeks() {
+      var output = {
+        past: [],
+        future: [],
+        current: null
+      };
 
-      axios.get('/resource/lessons/').then(function (response) {
-        _this.lessons = response.data;
+      if (!this.term) return output;
+
+      this.term.weeks.forEach(function (week) {
+        if (week.date === 'current') {
+          return output.current = week;
+        }
+
+        output[week.date].push(week);
       });
-    }
-  },
-  mounted: function mounted() {
-    if (this.preload) {
-      return this.lessons = this.preload;
-    }
 
-    this.refreshLessons();
+      return output;
+    }
+  }),
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
+    getPlanning: 'planning/retrieve',
+    createTerm: 'planning/createTerm'
+  }), {
+    termSubmit: function termSubmit() {
+      if (this.processing) return;
+
+      this.processing = true;
+      this.createTerm(this.week);
+    }
+  }),
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$store.dispatch('planning/retrieve').then(function () {
+      return _this.fetched = true;
+    });
   }
 });
 
 /***/ }),
-/* 115 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "lessons-list" } }, [
-    _c("nav", { staticClass: "toolkit" }, [
-      _c(
-        "a",
-        { attrs: { href: _vm.urls.create } },
-        [_c("h4", [_vm._v("Create a lesson")]), _vm._v(" "), _c("lesson-icon")],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "ul",
-      { staticClass: "lessons" },
-      _vm._l(_vm.lessons, function(lesson) {
-        return _c("li", { key: lesson.id }, [_vm._v(_vm._s(lesson.title))])
-      })
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "planner-view" },
+    [
+      !_vm.fetched ? _c("span", [_vm._v("Loading...")]) : _vm._e(),
+      _vm._v(" "),
+      !_vm.term && _vm.fetched
+        ? [
+            _c("div", { staticClass: "no-term-view" }, [
+              _c(
+                "form",
+                {
+                  staticClass: "prompt reading-flow slide-block",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.termSubmit($event)
+                    }
+                  }
+                },
+                [
+                  _c("section", [
+                    _c("h4", [_vm._v("What week does term end?")]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "There is currently no term, to create one we need to know when term ends."
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("label", { attrs: { for: "week" } }, [_vm._v("Week")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.week,
+                          expression: "week"
+                        }
+                      ],
+                      attrs: {
+                        type: "number",
+                        id: "week",
+                        min: "1",
+                        max: "52",
+                        required: ""
+                      },
+                      domProps: { value: _vm.week },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.week = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "hero-button",
+                    attrs: { type: "submit", value: "Submit" }
+                  })
+                ]
+              )
+            ])
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.term && _vm.fetched
+        ? [
+            _c(
+              "div",
+              { staticClass: "calendar" },
+              [
+                _vm._l(_vm.weeks.past.slice(-2), function(week) {
+                  return _c("calendar-tile", {
+                    key: week.id,
+                    attrs: { week: week }
+                  })
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.weeks.current, function(week) {
+                  return _c("calendar-tile", {
+                    key: week.id,
+                    attrs: { week: week }
+                  })
+                }),
+                _vm._v(" "),
+                _vm._l(_vm.weeks.future.slice(4), function(week) {
+                  return _c("calendar-tile", {
+                    key: week.id,
+                    attrs: { week: week }
+                  })
+                })
+              ],
+              2
+            )
+          ]
+        : _vm._e()
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -40265,15 +40416,142 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-19dba01c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-4a0880ec", module.exports)
   }
 }
 
 /***/ }),
-/* 116 */
-/***/ (function(module, exports) {
+/* 134 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getters__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions__ = __webpack_require__(138);
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  namespaced: true,
+  state: __WEBPACK_IMPORTED_MODULE_0__state__["a" /* default */],
+  getters: __WEBPACK_IMPORTED_MODULE_1__getters__,
+  mutations: __WEBPACK_IMPORTED_MODULE_2__mutations__,
+  actions: __WEBPACK_IMPORTED_MODULE_3__actions__
+});
+
+/***/ }),
+/* 135 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+  term: null
+});
+
+/***/ }),
+/* 136 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "term", function() { return term; });
+/**
+ * term
+ * @param {state, getters, rootState, rootGetters}
+ * @return state.term
+ */
+var term = function term(state) {
+  return state.term;
+};
+
+/***/ }),
+/* 137 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "term", function() { return term; });
+/**
+ * planning mutation
+ * @param term
+ */
+var term = function term(state, _term) {
+  console.log('why');
+  return state.term = _term;
+};
+
+/***/ }),
+/* 138 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retrieve", function() { return retrieve; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTerm", function() { return createTerm; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+
+
+var _this = this;
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+
+
+/**
+ * retrieve
+ * @param { state, commit, rootState } param
+ */
+var retrieve = function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref) {
+    var commit = _ref.commit;
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            return _context.abrupt('return', new Promise(function (resolve) {
+              axios.get('/planning').then(function (response) {
+                commit('term', response.data);
+
+                return resolve(response.data);
+              });
+            }));
+
+          case 1:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, _this);
+  }));
+
+  return function retrieve(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+/**
+ * createTerm
+ * @param { state, commit, rootState } param
+ * @param { Number } week
+ */
+var createTerm = function createTerm(_ref3, week) {
+  var commit = _ref3.commit;
+
+  return new Promise(function (resolve) {
+    axios.post('/planning/term', {
+      week: week
+    }).then(function (response) {
+      resolve(response.data);
+      return commit('term', response.data);
+    });
+  });
+};
 
 /***/ })
 ],[20]);

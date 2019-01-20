@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
         factory(Rosa\User::class, 50)->create()->each(function ($user) {
             $user->lessons()->save(factory(Rosa\Lesson::class)->make());
         });
-        // $this->call(UsersTableSeeder::class);
+
+        // Create one active term
+        // factory(Rosa\Term::class, 1)->create();
     }
 }

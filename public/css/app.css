@@ -2518,6 +2518,37 @@ span.CodeMirror-selectedtext {
   color: #ee128b;
 }
 
+.planner-view .no-term-view {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+}
+
+.planner-view .no-term-view::before {
+  content: '';
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.95);
+}
+
+.planner-view .no-term-view .prompt {
+  margin: auto;
+  background: #fff;
+}
+
+.planner-view .no-term-view .prompt section {
+  padding: 2rem;
+}
+
 /*
 * Elements
 * Elements are specific elements that are view-agnostic and reusable anywhere

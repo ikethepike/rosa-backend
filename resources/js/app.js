@@ -59,7 +59,7 @@ Vue.component(
 
 // Views
 Vue.component('editor-view', require('./components/views/Editor-view.vue'))
-Vue.component('lessons-list', require('./components/views/Lessons-list.vue'))
+Vue.component('planner-view', require('./components/views/Planner-view.vue'))
 
 const app = new Vue({
   el: '#rosa-app',

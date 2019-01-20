@@ -1,4 +1,4 @@
 @extends('templates.two-pane')
 @section('content-pane')
-<lessons-list></lessons-list>
+  <planner-view></planner-view>
 @endsection

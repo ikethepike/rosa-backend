@@ -1,0 +1,22 @@
+.planner-view {
+  .no-term-view {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    &::before {
+      content: '';
+      display: block;
+      @include dim(rgba(0, 0, 0, 0.95));
+    }
+    .prompt {
+      margin: auto;
+      background: #fff;
+    }
+    .prompt section {
+      padding: 2rem;
+    }
+  }
+}

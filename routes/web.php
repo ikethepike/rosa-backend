@@ -67,4 +67,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::post('lessons/masthead', 'LessonController@masthead');
+
+    Route::group(['prefix' => 'planning'], function () {
+        Route::post('term', 'PlanningController@createTerm');
+
+        Route::get('/', 'PlanningController@planning');
+    });
 });

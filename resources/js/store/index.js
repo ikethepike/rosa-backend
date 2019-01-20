@@ -8,10 +8,15 @@ import * as actions from './actions'
 
 Vue.use(Vuex)
 
+import planning from './modules/planning'
+
 // Initialize Vuex
 export default new Vuex.Store({
   state,
   getters,
   mutations,
   actions,
+  modules: {
+    planning,
+  },
 })

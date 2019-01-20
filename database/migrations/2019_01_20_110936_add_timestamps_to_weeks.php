@@ -4,16 +4,16 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddScoreToUsers extends Migration
+class AddTimestampsToWeeks extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('score')->default(0)->unsigned();
-            $table->boolean('student')->default(false);
+        Schema::table('weeks', function (Blueprint $table) {
+            $table->datetime('starts_at');
+            $table->datetime('ends_at');
         });
     }
 
@@ -22,7 +22,7 @@ class AddScoreToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('weeks', function (Blueprint $table) {
             //
         });
     }

@@ -20,7 +20,14 @@ class UserController extends Controller
     {
         $toRegister             = $request->all();
         $toRegister['password'] = Hash::make($request->password);
+        $toRegister['staff']    = true;
         $user                   = User::create($toRegister);
+
+        if (1 == User::count()) {
+            $user->approved = true;
+            $user->save();
+        }
+
         auth()->login($user);
     }
 
