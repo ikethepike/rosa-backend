@@ -31,7 +31,7 @@ class HomeController extends Controller
                 'registered' => $term ? $term->users : [],
             ],
             'highscore'         => User::orderBy('score', 'DESC')->first(),
-            'week'              => $term->currentWeek()->load('attendance'),
+            'week'              => $term ? $term->currentWeek()->load('attendance') : [],
         ]);
     }
 
