@@ -64,21 +64,17 @@ Vue.component('lessons-list', require('./components/views/Lessons-list.vue'))
 const app = new Vue({
   el: '#rosa-app',
   store,
-  data: {
-    views: {
-      editor: false,
-    },
-    lessons: [],
-  },
   computed: {
     ...mapGetters({
       editor: 'editor',
+      lessons: 'lessons',
     }),
   },
   methods: {
     ...mapActions({
       toggleEditor: 'toggleEditor',
       editLesson: 'editLesson',
+      getLessons: 'getLessons',
     }),
     toggleView(view) {
       this.views[view] = !this.views[view]
@@ -90,13 +86,8 @@ const app = new Vue({
 
       return (window.location = `${Rosa.url}/home`)
     },
-    refreshLessons() {
-      axios.get('/resource/lessons/').then(response => {
-        this.lessons = response.data
-      })
-    },
   },
   mounted() {
-    this.refreshLessons()
+    this.getLessons()
   },
 })

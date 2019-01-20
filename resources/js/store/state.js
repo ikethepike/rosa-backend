@@ -5,4 +5,5 @@ export default {
     darkMode: false,
   },
   toast: null,
+  lessons: [],
 }

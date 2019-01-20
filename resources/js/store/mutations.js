@@ -31,3 +31,11 @@ export const editorDarkMode = (state, active) => {
 export const toast = (state, toast) => {
   return (state.toast = toast)
 }
+
+/**
+ * lessons mutation
+ * @param lessons
+ */
+export const lessons = (state, lessons) => {
+  return (state.lessons = lessons)
+}

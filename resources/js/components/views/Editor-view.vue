@@ -76,22 +76,34 @@ export default {
     uploading: false,
   }),
   computed: {
-    ...mapGetters(['editor']),
+    ...mapGetters({
+      editor: 'editor',
+      lesson: 'editorEditing',
+    }),
   },
   methods: {
     ...mapActions({
       toggleDarkMode: 'editorDarkMode',
     }),
     save() {
+      const data = {
+        id: this.editor.editing,
+        title: this.title,
+        text: this.body.value(),
+        masthead: this.masthead,
+        snippets: [],
+      }
+
+      data.id ? this.update(data) : this.create(data)
+    },
+    create: async function(data) {
       axios
-        .post('/resource/lessons', {
-          title: this.title,
-          text: this.body.value(),
-          masthead: null,
-          snippets: [],
-        })
+        .post('/resource/lessons', data)
         .then(response => {
-          this.masthead = response.data
+          const lesson = response.data
+          this.$store.dispatch('editLesson', lesson.id)
+          this.$store.dispatch('getLessons')
+
           this.message = {
             status: 'success',
             text: `Lesson saved`,
@@ -103,6 +115,14 @@ export default {
             text: 'Error saving lesson',
           }
         })
+    },
+    update: async function(data) {
+      const response = await axios.put(`/resource/lessons/${data.id}`, data)
+
+      this.message = {
+        status: 'success',
+        text: 'Lesson updated',
+      }
     },
     preview() {},
     clearMessage() {
@@ -131,6 +151,18 @@ export default {
           this.uploading = false
         })
     },
+    loadLesson() {
+      if (!this.lesson) return
+
+      this.title = this.lesson.title
+      this.body.value(this.lesson.text)
+      this.masthead = this.lesson.masthead
+    },
+  },
+  watch: {
+    lesson() {
+      this.loadLesson()
+    },
   },
   mounted() {
     this.body = new SimpleMDE({
@@ -139,6 +171,8 @@ export default {
       el: this.$refs.body,
       placeholder: 'Lesson text...',
     })
+
+    this.loadLesson()
   },
 }
 </script>

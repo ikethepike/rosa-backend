@@ -1,5 +1,5 @@
 <template>
-  <a class="lesson-tile slide-block">
+  <a class="lesson-tile slide-block" @click="edit">
     <file-icon></file-icon>
     <div>
       <span class="title">{{ lesson.title }}</span>
@@ -15,13 +15,20 @@ export default {
       required: true,
     },
   },
-  data: () => ({}),
   computed: {
+    darkMode() {
+      return this.$store.getters.editor.darkMode
+    },
     link() {
       return `${Rosa.url}/#/edit/${this.lesson.id}`
     },
     author() {
       return `${this.lesson.user.first_name} ${this.lesson.user.last_name}`
+    },
+  },
+  methods: {
+    edit() {
+      this.$store.dispatch('editLesson', this.lesson.id)
     },
   },
 }

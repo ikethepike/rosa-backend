@@ -1,3 +1,5 @@
+import Axios from 'axios'
+
 /**
  * toggleEditor
  * @param { state, commit, rootState } param
@@ -35,4 +37,14 @@ export const editorDarkMode = (
  */
 export const toast = ({ commit }, toast = null) => {
   return commit('toast', toast)
+}
+
+/**
+ * getLessons
+ * @param { state, commit, rootState } param
+ */
+export const getLessons = async ({ commit }) => {
+  const lessons = await axios.get('/resource/lessons')
+
+  return commit('lessons', lessons.data)
 }

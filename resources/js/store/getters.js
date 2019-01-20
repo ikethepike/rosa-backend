@@ -13,7 +13,19 @@ export const editorActive = state => {
  * @return state.editorEditing
  */
 export const editorEditing = state => {
-  return state.editorEditing
+  if (!state.lessons.length || !state.editor.editing) {
+    return null
+  }
+
+  const filtered = state.lessons.filter(
+    lesson => state.editor.editing == lesson.id
+  )
+
+  if (!filtered.length) {
+    return null
+  }
+
+  return filtered[0]
 }
 
 /**
@@ -32,4 +44,13 @@ export const editor = state => {
  */
 export const toast = state => {
   return state.toast
+}
+
+/**
+ * lessons
+ * @param {state, getters, rootState, rootGetters}
+ * @return state.lessons
+ */
+export const lessons = state => {
+  return state.lessons
 }
