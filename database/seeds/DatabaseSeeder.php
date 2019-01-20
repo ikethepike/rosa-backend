@@ -6,11 +6,14 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
-     * @return void
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        factory(Rosa\User::class, 50)->create()->each(function ($user) {
+            $user->lessons()->save(factory(Rosa\Lesson::class)->make());
+        });
+
+        // Create one active term
+        // factory(Rosa\Term::class, 1)->create();
     }
 }
