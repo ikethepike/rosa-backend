@@ -29,7 +29,7 @@
     <div id="editor-body">
       <header id="main-header">
         <input type="text" placeholder="Lesson title..." v-model="title" id="title">
-        <span class="author">{{ user.first_name }} {{ user.last_name}}</span>
+        <span class="author">{{ lesson ? lesson.user.name : user.name }}</span>
       </header>
       <textarea ref="body" id="lesson-body"/>
     </div>
