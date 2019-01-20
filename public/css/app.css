@@ -2770,27 +2770,29 @@ span.CodeMirror-selectedtext {
   display: flex;
   font-size: 2rem;
   background: #fff;
-  text-align: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-left: 1rem;
   margin-bottom: 1rem;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-family: "Inconsolata", monospace;
+  font-family: "News Gothic", sans-serif;
 }
 
 .calendar-tile .calendar-header .week {
   font-weight: 400;
   font-style: super;
   color: #ee128b;
+  font-size: 1rem;
   margin-top: -0.75em;
 }
 
 .calendar-tile .lessons {
   padding: 0 0.5rem;
   font-size: 0.875rem;
+}
+
+.calendar-tile .lessons > div {
+  margin-bottom: 1rem;
 }
 
 .calendar-tile .lessons .title {
@@ -2815,16 +2817,23 @@ span.CodeMirror-selectedtext {
   background: none;
 }
 
+.calendar-tile.current .calendar-header,
 .calendar-tile.current .calendar-header .week {
-  color: #fff;
+  color: #41409e;
 }
 
 .calendar-tile.past {
-  background: #525252;
+  color: #fff;
+  background: #222;
+  border-left: 1px solid #fff;
 }
 
 .calendar-tile.future {
   background: transparent;
+}
+
+.calendar-tile:first-child {
+  border-left: 0;
 }
 
 .lesson-picker {

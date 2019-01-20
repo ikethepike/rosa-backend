@@ -14,21 +14,24 @@
     display: flex;
     font-size: 2rem;
     background: #fff;
-    text-align: center;
     align-items: center;
+    padding-left: 1rem;
     margin-bottom: 1rem;
-    justify-content: center;
-    font-family: $inconsolata;
+    font-family: $heading-font-family;
     .week {
       font-weight: 400;
       font-style: super;
       color: $highlight;
+      font-size: 1rem;
       margin-top: -0.75em;
     }
   }
   .lessons {
     padding: 0 0.5rem;
     font-size: 0.875rem;
+    > div {
+      margin-bottom: 1rem;
+    }
     .title {
       display: block;
       font-weight: 700;
@@ -48,14 +51,21 @@
     .calendar-header {
       background: none;
     }
+    .calendar-header,
     .calendar-header .week {
-      color: #fff;
+      color: $highlight2;
     }
   }
   &.past {
-    background: #525252;
+    color: #fff;
+    background: #222;
+    border-left: 1px solid #fff;
   }
   &.future {
     background: transparent;
+  }
+
+  &:first-child {
+    border-left: 0;
   }
 }
