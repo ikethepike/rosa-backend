@@ -662,7 +662,7 @@ input[type='search'].error,
 input[type='time'].error,
 input[type='week'].error,
 input[type='datetime-local'].error {
-  border-color: #a90118;
+  border-color: #a90118 !important;
 }
 
 input[type='text'].success,
@@ -698,7 +698,7 @@ input[type='week'].confirmation,
 input[type='datetime-local'].success,
 input[type='datetime-local'].match,
 input[type='datetime-local'].confirmation {
-  border-color: #79c753;
+  border-color: #79c753 !important;
 }
 
 /*

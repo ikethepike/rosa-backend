@@ -24,12 +24,12 @@ input[type='datetime-local'] {
 
   // States
   &.error {
-    border-color: $error;
+    border-color: $error !important;
   }
 
   &.success,
   &.match,
   &.confirmation {
-    border-color: $success;
+    border-color: $success !important;
   }
 }

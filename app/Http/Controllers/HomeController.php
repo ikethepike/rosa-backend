@@ -21,7 +21,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home')->with(['user' => auth()->user(), 'hasUsersToApprove' => true]);
+        $planning = new PlanningController();
+        $term     = $planning->planning();
+
+        return view('home')->with([
+            'user'              => auth()->user(),
+            'hasUsersToApprove' => $this->hasUsersToApprove(),
+            'students'          => (object) [
+                'registered' => $term->users,
+            ],
+            'highscore'         => User::orderBy('score', 'DESC')->first(),
+            'week'              => $term->currentWeek()->load('attendance'),
+        ]);
+    }
+
+    private function hasUsersToApprove()
+    {
+        return User::where('approved', false)->where('staff', true)->exists();
     }
 
     public function lessons()

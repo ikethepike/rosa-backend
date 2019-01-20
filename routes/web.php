@@ -33,7 +33,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('login', 'UserController@login');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('home', 'HomeController@index')->name('home');
 
     Route::get('users', 'HomeController@users')->name('users');

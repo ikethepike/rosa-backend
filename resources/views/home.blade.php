@@ -4,7 +4,7 @@
     <header class="stats">
         <div>
             <h4>Attendance</h4>
-            <h2>22</h2>
+            <h2>{{ $week->attendance->count() }}</h2>
             <p>Attended class this week</p>
         </div>
         <div>
@@ -22,13 +22,13 @@
         </div>
         <div>
             <h4>Total students</h4>
-            <h2>40</h2>
+            <h2>{{ count($students->registered) }}</h2>
             <p>Registered this term</p>
         </div>
         <div>
             <h4>Highscore</h4>
-            <h2>340</h2>
-            <p>Held by Stinky Steve</p>
+            <h2>{{ $highscore->score }}</h2>
+            <p>Held by {{ $highscore->name }}</p>
         </div>
     </header>
 
