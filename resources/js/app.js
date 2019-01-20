@@ -1,9 +1,13 @@
 // Imports
+// -- Dependencies
 import Vue from 'vue'
 import lodash from 'lodash'
 import Axios from 'axios'
 import store from './store'
 import { mapActions, mapGetters } from 'vuex'
+
+// -- File imports
+import './components'
 
 // Let's instantiate Axios
 window.axios = Axios

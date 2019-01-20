@@ -28,7 +28,7 @@ class HomeController extends Controller
             'user'              => auth()->user(),
             'hasUsersToApprove' => $this->hasUsersToApprove(),
             'students'          => (object) [
-                'registered' => $term->users,
+                'registered' => $term ? $term->users : [],
             ],
             'highscore'         => User::orderBy('score', 'DESC')->first(),
             'week'              => $term->currentWeek()->load('attendance'),
