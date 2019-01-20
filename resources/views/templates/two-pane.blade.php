@@ -43,7 +43,7 @@
             </ul>
         </template>
     </nav>
-    <main class="content">
+    <main class="content @yield('content-view')" >
         <editor-view v-if="editor.active" :user="{{ auth()->user() }}"></editor-view>
         <div v-else>
             @yield("content-pane")

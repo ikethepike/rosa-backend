@@ -18,6 +18,7 @@ input[type='datetime-local'] {
   color: $highlight2;
   background: none;
   transition: border 0.3s;
+  font-family: $inconsolata;
   height: $desktop-input-height;
   border-bottom: 2px solid $highlight2;
 

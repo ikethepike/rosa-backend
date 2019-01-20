@@ -40215,8 +40215,25 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__elements_Calendar_tile_vue__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__elements_Calendar_tile_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__elements_Calendar_tile_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -40247,9 +40264,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    calendarTile: __WEBPACK_IMPORTED_MODULE_1__elements_Calendar_tile_vue___default.a
+  },
   data: function data() {
     return {
-      week: null,
+      weekNumber: null,
       fetched: false,
       processing: false
     };
@@ -40275,6 +40295,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       });
 
       return output;
+    },
+    futureCount: function futureCount() {
+      if (!this.term) return 5;
+
+      return 3 + (2 - this.weeks.past.length) + (this.weeks.current ? 0 : 1);
     }
   }),
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
@@ -40285,7 +40310,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       if (this.processing) return;
 
       this.processing = true;
-      this.createTerm(this.week);
+      this.createTerm(this.weekNumber);
     }
   }),
   mounted: function mounted() {
@@ -40342,8 +40367,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.week,
-                          expression: "week"
+                          value: _vm.weekNumber,
+                          expression: "weekNumber"
                         }
                       ],
                       attrs: {
@@ -40353,13 +40378,13 @@ var render = function() {
                         max: "52",
                         required: ""
                       },
-                      domProps: { value: _vm.week },
+                      domProps: { value: _vm.weekNumber },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.week = $event.target.value
+                          _vm.weekNumber = $event.target.value
                         }
                       }
                     })
@@ -40381,26 +40406,34 @@ var render = function() {
               "div",
               { staticClass: "calendar" },
               [
-                _vm._l(_vm.weeks.past.slice(-2), function(week) {
-                  return _c("calendar-tile", {
-                    key: week.id,
-                    attrs: { week: week }
-                  })
-                }),
+                _vm.weeks.past.length
+                  ? _vm._l(_vm.weeks.past.slice(-2), function(week) {
+                      return _c("calendar-tile", {
+                        key: week.id,
+                        attrs: { week: week }
+                      })
+                    })
+                  : _vm._e(),
                 _vm._v(" "),
-                _vm._l(_vm.weeks.current, function(week) {
-                  return _c("calendar-tile", {
-                    key: week.id,
-                    attrs: { week: week }
-                  })
-                }),
+                _vm.weeks.current
+                  ? [
+                      _c("calendar-tile", {
+                        key: _vm.weeks.current.id,
+                        attrs: { week: _vm.weeks.current }
+                      })
+                    ]
+                  : _vm._e(),
                 _vm._v(" "),
-                _vm._l(_vm.weeks.future.slice(4), function(week) {
-                  return _c("calendar-tile", {
-                    key: week.id,
-                    attrs: { week: week }
-                  })
-                })
+                _vm.weeks.future.length
+                  ? _vm._l(_vm.weeks.future.slice(0, _vm.futureCount), function(
+                      week
+                    ) {
+                      return _c("calendar-tile", {
+                        key: week.id,
+                        attrs: { week: week }
+                      })
+                    })
+                  : _vm._e()
               ],
               2
             )
@@ -40491,6 +40524,8 @@ var term = function term(state, _term) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "retrieve", function() { return retrieve; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTerm", function() { return createTerm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "attachLesson", function() { return attachLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "detachLesson", function() { return detachLesson; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(6);
@@ -40552,6 +40587,378 @@ var createTerm = function createTerm(_ref3, week) {
     });
   });
 };
+
+/**
+ * addClass
+ * @param { state, commit, rootState } param
+ * @param {*} data
+ */
+var attachLesson = function attachLesson(_ref4, data) {
+  var commit = _ref4.commit;
+
+  return new Promise(function (resolve) {
+    axios.post('/planning/lesson/attach', {
+      week: data.week,
+      lesson: data.lesson
+    }).then(function (response) {
+      return resolve(response.data);
+    });
+  });
+};
+
+/**
+ * addClass
+ * @param { state, commit, rootState } param
+ * @param {*} data
+ */
+var detachLesson = function detachLesson(_ref5, data) {
+  var commit = _ref5.commit;
+
+  return new Promise(function (resolve) {
+    axios.post('/planning/lesson/detach', {
+      week: data.week,
+      lesson: data.lesson
+    }).then(function (response) {
+      return resolve(response.data);
+    });
+  });
+};
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(141)
+/* template */
+var __vue_template__ = __webpack_require__(140)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/elements/Calendar-tile.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7f940ba0", Component.options)
+  } else {
+    hotAPI.reload("data-v-7f940ba0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "calendar-tile", class: _vm.week.date },
+    [
+      _c("header", { staticClass: "calendar-header" }, [
+        _vm._v("\n    Tu\n    "),
+        _c("sup", { staticClass: "week" }, [_vm._v(_vm._s(_vm.week.number))])
+      ]),
+      _vm._v(" "),
+      _vm.picker
+        ? _c("lesson-picker", {
+            on: {
+              close: function($event) {
+                _vm.picker = false
+              },
+              pick: _vm.onPick
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "lessons" },
+        _vm._l(_vm.week.lessons, function(lesson) {
+          return _c("div", { key: lesson.id }, [
+            _c("span", { staticClass: "title" }, [
+              _vm._v(_vm._s(lesson.title))
+            ]),
+            _vm._v(" "),
+            _c("span", { staticClass: "name" }, [
+              _vm._v(_vm._s(lesson.user.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.detach(lesson.id)
+                  }
+                }
+              },
+              [_vm._v("Detach")]
+            )
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c("nav", { staticClass: "bottom-nav" }, [
+        _c("a", {
+          staticClass: "plus-button",
+          on: {
+            click: function($event) {
+              _vm.picker = true
+            }
+          }
+        })
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7f940ba0", module.exports)
+  }
+}
+
+/***/ }),
+/* 141 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lesson_picker_vue__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Lesson_picker_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Lesson_picker_vue__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    lessonPicker: __WEBPACK_IMPORTED_MODULE_1__Lesson_picker_vue___default.a
+  },
+  props: {
+    week: {
+      type: Object,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      picker: false
+    };
+  },
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
+    refresh: 'planning/retrieve',
+    detachLesson: 'planning/detachLesson',
+    attachLesson: 'planning/attachLesson'
+  }), {
+    onPick: function onPick(id) {
+      this.picker = false;
+
+      this.$store.dispatch('planning/attachLesson', {
+        week: this.week.id,
+        lesson: id
+      }).then(this.refresh);
+    },
+    detach: function detach(id) {
+      this.$store.dispatch('planning/detachLesson', {
+        week: this.week.id,
+        lesson: id
+      }).then(this.refresh);
+    }
+  })
+});
+
+/***/ }),
+/* 142 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(143)
+/* template */
+var __vue_template__ = __webpack_require__(144)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/elements/Lesson-picker.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-38ab3e16", Component.options)
+  } else {
+    hotAPI.reload("data-v-38ab3e16", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 143 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    lessons: function lessons() {
+      return this.$store.getters.lessons;
+    }
+  },
+  methods: {
+    pick: function pick(id) {
+      this.$emit('pick', id);
+    },
+    close: function close() {
+      this.$emit('close');
+    }
+  }
+});
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "lesson-picker" }, [
+    _c("header", [
+      _c("span", [_vm._v("Lessons")]),
+      _vm._v(" "),
+      _c("a", { staticClass: "close-button", on: { click: _vm.close } })
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "lesson-list" },
+      _vm._l(_vm.lessons, function(lesson) {
+        return _c(
+          "a",
+          {
+            key: lesson.id,
+            staticClass: "lesson",
+            on: {
+              click: function($event) {
+                _vm.pick(lesson.id)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "title" }, [_vm._v(_vm._s(lesson.title))]),
+            _vm._v(" "),
+            _c("div", { staticClass: "author" }, [
+              _vm._v(_vm._s(lesson.user.name))
+            ])
+          ]
+        )
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-38ab3e16", module.exports)
+  }
+}
 
 /***/ })
 ],[20]);

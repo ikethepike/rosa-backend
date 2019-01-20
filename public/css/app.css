@@ -646,6 +646,7 @@ input[type='datetime-local'] {
   background: none;
   -webkit-transition: border 0.3s;
   transition: border 0.3s;
+  font-family: "Inconsolata", monospace;
   height: 3rem;
   border-bottom: 2px solid #41409e;
 }
@@ -827,6 +828,46 @@ input[type='checkbox'],
   text-transform: uppercase;
   border: 2px solid #41409e;
   height: 3rem;
+}
+
+.plus-button,
+.close-button {
+  width: 2rem;
+  height: 2rem;
+  color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #fff;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: inline-block;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "Inconsolata", monospace;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.plus-button::before,
+.close-button::before {
+  content: '+';
+}
+
+.plus-button:hover,
+.close-button:hover {
+  background: #f8a1d1;
+}
+
+.close-button {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
 /*
@@ -1597,6 +1638,17 @@ svg {
 
 .two-pane-view .content > *:first-child {
   margin-top: 4rem;
+  height: calc(100% - 4rem);
+}
+
+.two-pane-view .content.lessons-view {
+  border: 0;
+  padding: 0;
+}
+
+.two-pane-view .content.lessons-view > *:first-child {
+  height: 100%;
+  margin-top: 0;
 }
 
 .lesson-tile {
@@ -2326,7 +2378,7 @@ span.CodeMirror-selectedtext {
 #editor-view textarea,
 #editor-view .CodeMirror {
   border: none;
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
 }
 
 #editor-view #editor-toolbar {
@@ -2518,6 +2570,10 @@ span.CodeMirror-selectedtext {
   color: #ee128b;
 }
 
+.planner-view {
+  height: 100%;
+}
+
 .planner-view .no-term-view {
   top: 0;
   left: 0;
@@ -2689,5 +2745,148 @@ span.CodeMirror-selectedtext {
   0% {
     opacity: 0.3;
   }
+}
+
+.calendar {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.calendar-tile {
+  height: 100%;
+  overflow-y: auto;
+  width: 16.6666667%;
+  position: relative;
+}
+
+.calendar-tile .calendar-header {
+  height: 5rem;
+  color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 2rem;
+  background: #fff;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "Inconsolata", monospace;
+}
+
+.calendar-tile .calendar-header .week {
+  font-weight: 400;
+  font-style: super;
+  color: #ee128b;
+  margin-top: -0.75em;
+}
+
+.calendar-tile .lessons {
+  padding: 0 0.5rem;
+  font-size: 0.875rem;
+}
+
+.calendar-tile .lessons .title {
+  display: block;
+  font-weight: 700;
+}
+
+.calendar-tile .lessons a {
+  display: block;
+}
+
+.calendar-tile .bottom-nav {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.calendar-tile.current {
+  background: #ee128b;
+}
+
+.calendar-tile.current .calendar-header {
+  background: none;
+}
+
+.calendar-tile.current .calendar-header .week {
+  color: #fff;
+}
+
+.calendar-tile.past {
+  background: #525252;
+}
+
+.calendar-tile.future {
+  background: transparent;
+}
+
+.lesson-picker {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  z-index: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  overflow-y: auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  background: #41409e;
+}
+
+.lesson-picker > header {
+  height: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin: 0 auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.lesson-picker .lesson-list {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  -ms-flex-flow: wrap;
+      flex-flow: wrap;
+  width: 90%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.lesson-picker a.lesson {
+  width: 22rem;
+  height: 10rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #fff;
+}
+
+.lesson-picker a.lesson .title {
+  display: block;
+  font-weight: 700;
 }
 

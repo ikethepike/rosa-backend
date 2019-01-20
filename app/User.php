@@ -16,8 +16,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'staff', 'approved',
+        'first_name', 'last_name', 'email', 'password', 'staff', 'approved', 'avatar', 'paragraph',
     ];
+
+    protected $appends = ['name'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -39,5 +41,10 @@ class User extends Authenticatable
     public function attendance()
     {
         return $this->belongsToMany(Week::class, 'user_week');
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

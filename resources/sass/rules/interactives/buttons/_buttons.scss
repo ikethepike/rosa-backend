@@ -51,3 +51,30 @@ $mobile-button-size: 1.5rem;
   border: 2px solid $highlight2;
   height: $desktop-input-height;
 }
+
+.plus-button,
+.close-button {
+  width: 2rem;
+  height: 2rem;
+  color: #000;
+  display: flex;
+  background: #fff;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 2rem;
+  align-items: center;
+  display: inline-block;
+  justify-content: center;
+  font-family: $inconsolata;
+  transition: background 0.3s;
+  &::before {
+    content: '+';
+  }
+  &:hover {
+    background: lighten($highlight, 30%);
+  }
+}
+.close-button {
+  transform: rotate(45deg);
+}

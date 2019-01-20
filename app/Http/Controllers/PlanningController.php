@@ -3,6 +3,7 @@
 namespace Rosa\Http\Controllers;
 
 use Rosa\Term;
+use Rosa\Week;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -37,8 +38,13 @@ class PlanningController extends Controller
 
     public function attachLesson(Request $request)
     {
-        $term = $this->activeTerm();
+        $week = Week::findOrFail($request->week);
+        $week->lessons()->attach($request->lesson);
+    }
 
-        $term->lessons->attach($request->id);
+    public function detachLesson(Request $request)
+    {
+        $week = Week::findOrFail($request->week);
+        $week->lessons()->detach($request->lesson);
     }
 }

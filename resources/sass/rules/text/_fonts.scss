@@ -5,6 +5,8 @@
 * Google fonts. It also binds up common fonts to variables.
 */
 
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
 /* Google font options */
 // -- Example: $google-fonts : ('Montserrat' : "400,600", "Roboto" : '300i,800');
 
@@ -78,6 +80,7 @@ $localFonts: false;
 
 // Font variables
 $news-gothic: 'News Gothic', sans-serif;
+$inconsolata: 'Inconsolata', monospace;
 // -- System fonts
 $system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
   sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
