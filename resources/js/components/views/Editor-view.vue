@@ -164,6 +164,9 @@ export default {
       this.loadLesson()
     },
   },
+  beforeDestroy() {
+    this.$store.dispatch('editLesson', null) // clear lesson
+  },
   mounted() {
     this.body = new SimpleMDE({
       status: false,

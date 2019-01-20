@@ -1,5 +1,5 @@
 <template>
-  <a class="lesson-tile slide-block" @click="edit">
+  <a class="lesson-tile slide-block" @click="edit" :class="{ 'dark-mode' : darkMode }">
     <file-icon></file-icon>
     <div>
       <span class="title">{{ lesson.title }}</span>

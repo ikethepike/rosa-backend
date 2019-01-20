@@ -80,8 +80,9 @@
   margin-top: 1rem;
   min-height: 7rem;
   position: relative;
-  align-items: center;
   background: #fff;
+  align-items: center;
+  transition: background 0.3s;
   svg {
     width: 3rem;
     height: 100%;
@@ -93,6 +94,11 @@
   }
   .author {
     display: block;
+  }
+  // States
+  &.dark-mode {
+    color: #fff;
+    background: #222;
   }
 }
 

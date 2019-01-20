@@ -1609,10 +1609,12 @@ svg {
   margin-top: 1rem;
   min-height: 7rem;
   position: relative;
+  background: #fff;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: #fff;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
 }
 
 .lesson-tile svg {
@@ -1629,6 +1631,11 @@ svg {
 
 .lesson-tile .author {
   display: block;
+}
+
+.lesson-tile.dark-mode {
+  color: #fff;
+  background: #222;
 }
 
 .stats {

@@ -31609,7 +31609,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "a",
-    { staticClass: "lesson-tile slide-block", on: { click: _vm.edit } },
+    {
+      staticClass: "lesson-tile slide-block",
+      class: { "dark-mode": _vm.darkMode },
+      on: { click: _vm.edit }
+    },
     [
       _c("file-icon"),
       _vm._v(" "),
@@ -32039,6 +32043,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     lesson: function lesson() {
       this.loadLesson();
     }
+  },
+  beforeDestroy: function beforeDestroy() {
+    this.$store.dispatch('editLesson', null); // clear lesson
   },
   mounted: function mounted() {
     this.body = new __WEBPACK_IMPORTED_MODULE_1_simplemde___default.a({
