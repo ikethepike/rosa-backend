@@ -5,7 +5,12 @@
       <a class="close-button" @click="close"></a>
     </header>
     <div class="lesson-list">
-      <a class="lesson" v-for="lesson in lessons" :key="lesson.id" @click="pick(lesson.id)">
+      <a
+        class="lesson slide-block"
+        v-for="lesson in lessons"
+        :key="lesson.id"
+        @click="pick(lesson.id)"
+      >
         <div class="title">{{ lesson.title }}</div>
         <div class="author">{{ lesson.user.name }}</div>
       </a>
