@@ -28,13 +28,23 @@ class UserController extends Controller
             $user->save();
         }
 
-        auth()->login($user);
+        if ($user->approved) {
+            auth()->login($user);
+        }
+
+        return $user;
     }
 
     public function login(LoginRequest $request)
     {
         if (auth()->attempt($request->all())) {
-            auth()->login(User::where('email', $request->email)->first(), true);
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user->approved) {
+                return abort(401);
+            }
+
+            auth()->login($user, true);
 
             return response(200);
         }

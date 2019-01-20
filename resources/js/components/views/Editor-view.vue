@@ -16,8 +16,8 @@
           </label>
         </section>
         <section class="right">
-          <a>
-            <preview-icon></preview-icon>
+          <a @click="options.active = true">
+            <settings-icon></settings-icon>
           </a>
           <a role="save" @click="save">
             <save-icon></save-icon>
@@ -32,6 +32,33 @@
         <span class="author">{{ user.first_name }} {{ user.last_name}}</span>
       </header>
       <textarea ref="body" id="lesson-body"/>
+    </div>
+
+    <div class="options" v-if="options.active">
+      <div class="background" @click="options.active = false"></div>
+      <form class="options-pane reading-flow" @submit.prevent="options.active = false">
+        <section class="options-content">
+          <div class="slide-block">
+            <h4>Options</h4>
+            <p>You can enable or disable the embedded editor options from here, setting up a default editor for the class to use.</p>
+          </div>
+
+          <div class="slide-block">
+            <input type="checkbox" id="disable-editor" v-model="options.editorDisabled">
+            <label for="disable-editor">Disable editor?</label>
+          </div>
+
+          <div class="slide-block" v-if="!options.editorDisabled">
+            <label for="boilerplate">Glitch Boilerplate</label>
+            <input type="url" v-model="options.boilerplate">
+            <span
+              class="hint"
+              v-if="options.boilerplate && !options.boilerplate.includes('remix')"
+            >Hmm, that does't look like a remix url.</span>
+          </div>
+        </section>
+        <input type="submit" class="hero-button" value="Save">
+      </form>
     </div>
 
     <div
@@ -51,6 +78,7 @@ import bulbIcon from '../icons/Bulb-icon.vue'
 import saveIcon from '../icons/Save-icon.vue'
 import imageIcon from '../icons/Image-icon.vue'
 import previewIcon from '../icons/Preview-icon.vue'
+import settingsIcon from '../icons/Settings-icon.vue'
 
 export default {
   components: {
@@ -58,6 +86,7 @@ export default {
     saveIcon,
     imageIcon,
     previewIcon,
+    settingsIcon,
   },
   props: {
     user: {
@@ -71,6 +100,11 @@ export default {
     message: {
       text: '',
       status: '',
+    },
+    options: {
+      active: false,
+      editorDisabled: false,
+      editorBoilerplate: '',
     },
     masthead: null,
     uploading: false,
@@ -87,11 +121,13 @@ export default {
     }),
     save() {
       const data = {
-        id: this.editor.editing,
+        snippets: [],
         title: this.title,
         text: this.body.value(),
+        id: this.editor.editing,
         masthead: this.masthead,
-        snippets: [],
+        boilerplate: this.options.boilerplate,
+        disable_editor: this.options.editorDisabled,
       }
 
       data.id ? this.update(data) : this.create(data)
@@ -109,7 +145,7 @@ export default {
             text: `Lesson saved`,
           }
         })
-        .error(error => {
+        .catch(error => {
           this.message = {
             status: 'error',
             text: 'Error saving lesson',
@@ -157,6 +193,8 @@ export default {
       this.title = this.lesson.title
       this.body.value(this.lesson.text)
       this.masthead = this.lesson.masthead
+      this.options.editorDisabled = this.lesson.disable_editor
+      this.options.boilerplate = this.lesson.boilerplate
     },
   },
   watch: {

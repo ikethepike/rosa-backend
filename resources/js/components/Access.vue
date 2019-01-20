@@ -122,12 +122,17 @@ export default {
           last_name: this.lastName,
         })
         .then(response => {
+          const user = response.data
+          if (!user.approved) {
+            return this.$store.dispatch(
+              'toast',
+              'You are registered! Contact admin to get approved.'
+            )
+          }
+
           return (window.location = `${Rosa.url}/home`)
         })
         .catch(error => {
-          console.error(error.response)
-          console.error(error.response.data)
-          console.error(error.response.status)
           if (!error.response) {
             console.error('Error registering', error)
           }

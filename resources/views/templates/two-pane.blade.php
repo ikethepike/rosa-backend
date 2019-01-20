@@ -1,9 +1,6 @@
 @extends('templates.default')
 @section('content')
 
-{{-- Toast message --}}
-<toast-message></toast-message>
-
 <div class="two-pane-view" :class="{ 'editor-active' : editor.active }">
     <nav class="sidebar">
         <header>

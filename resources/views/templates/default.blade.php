@@ -24,6 +24,8 @@
 	{{-- Dynamic content --}}
 	@hasSection("content")
 	<div id="rosa-app" class="@yield('page')">
+		{{-- Toast message --}}
+		<toast-message></toast-message>
 		@yield('content')
 	</div>
 	@endif
