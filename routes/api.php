@@ -14,8 +14,9 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['prefix' => 'user'], function () {
-    Route::post('login', 'Api\UserController@login');
-    Route::post('register', 'Api\UserController@register');
+    Route::post('login', 'Api\StudentController@login');
+    Route::post('register', 'Api\StudentController@register');
+    Route::post('exists', 'Api\StudentController@exists');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

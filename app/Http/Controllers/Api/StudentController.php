@@ -4,11 +4,12 @@ namespace Rosa\Http\Controllers\Api;
 
 use Hash;
 use Rosa\User;
+use Illuminate\Http\Request;
 use Rosa\Http\Controllers\Controller;
 use Rosa\Http\Requests\User\LoginRequest;
 use Rosa\Http\Requests\User\RegisterRequest;
 
-class UserController extends Controller
+class StudentController extends Controller
 {
     private $success  = 200;
     private $frontend = 'rosa';
@@ -18,6 +19,13 @@ class UserController extends Controller
         $this->frontend = env('FRONTEND_NAME') || 'rosa';
     }
 
+    /**
+     * Log a user in and set a token.
+     *
+     * @param LoginRequest $request
+     *
+     * @return json
+     */
     public function login(LoginRequest $request)
     {
         if (auth()->attempt($request->all())) {
@@ -32,6 +40,13 @@ class UserController extends Controller
         return abort(401);
     }
 
+    /**
+     * Register a student and send back token.
+     *
+     * @param RegisterRequest $request
+     *
+     * @return json
+     */
     public function register(RegisterRequest $request)
     {
         $register           = collect($request->all());
@@ -43,5 +58,17 @@ class UserController extends Controller
             'user'  => $user,
             'token' => $user->createToken($this->frontend)->accessToken,
         ], 200);
+    }
+
+    /**
+     * Check whether a given email exists.
+     *
+     * @param Request $request
+     *
+     * @return int
+     */
+    public function exists(Request $request)
+    {
+        return (int) User::where('email', $request->email)->exists();
     }
 }
