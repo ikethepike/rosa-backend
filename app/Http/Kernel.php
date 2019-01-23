@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \Rosa\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Rosa\Http\Middleware\TrustProxies::class,
+        \Rosa\Http\Middleware\PreflightResponse::class,
     ];
 
     /**
