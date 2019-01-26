@@ -21,7 +21,7 @@ class Lesson extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function lessons()
+    public function weeks()
     {
         return $this->belongsToMany(Week::class, 'lesson_week');
     }

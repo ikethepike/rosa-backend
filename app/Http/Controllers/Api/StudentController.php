@@ -52,7 +52,7 @@ class StudentController extends Controller
         $register           = collect($request->all());
         $register->password = Hash::make($request->password);
         $register->student  = true;
-        $user               = User::create($register);
+        $user               = User::create($register->toArray());
 
         return response()->json([
             'user'  => $user,
