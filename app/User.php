@@ -2,6 +2,7 @@
 
 namespace Rosa;
 
+use Carbon\Carbon;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,10 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'staff', 'approved', 'avatar', 'paragraph',
+        'first_name', 'last_name', 'email', 'password', 'staff', 'approved', 'avatar', 'paragraph', 'student',
     ];
 
-    protected $appends = ['name'];
+    protected $appends = ['name', 'attendedWeek'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -48,8 +49,26 @@ class User extends Authenticatable
         return $this->belongsToMany(Term::class, 'term_user');
     }
 
+    /* Attributes */
+
+    /**
+     * Returns the user name fully written out.
+     *
+     * @return string
+     */
     public function getNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function getAttendedWeekAttribute()
+    {
+        // if (!$this->student || $this->staff) {
+        //     return false;
+        // }
+
+        $date = new Carbon();
+
+        return $this->attendance()->where('weeks.id', Week::current()->id)->exists();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Rosa;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Week extends Model
@@ -46,5 +47,12 @@ class Week extends Model
         }
 
         return 'future';
+    }
+
+    public static function current()
+    {
+        $date = Carbon::now();
+
+        return Week::whereYear('starts_at', $date)->where('number', $date->format('W'))->first();
     }
 }

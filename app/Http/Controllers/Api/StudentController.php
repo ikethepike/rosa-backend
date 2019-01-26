@@ -4,6 +4,8 @@ namespace Rosa\Http\Controllers\Api;
 
 use Hash;
 use Rosa\User;
+use Rosa\Week;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Rosa\Http\Controllers\Controller;
 use Rosa\Http\Requests\User\LoginRequest;
@@ -30,7 +32,7 @@ class StudentController extends Controller
     {
         if (auth()->attempt($request->all())) {
             return response()->json([
-                    'user'  => auth()->user(),
+                    'user'  => auth()->user()->load('attendance'),
                     'token' => auth()->user()->createToken($this->frontend)->accessToken,
                 ],
                 200
@@ -69,6 +71,23 @@ class StudentController extends Controller
      */
     public function exists(Request $request)
     {
-        return (int) User::where('email', $request->email)->exists();
+        return User::where('email', $request->email)->first();
+    }
+
+    public function markAttendance(Request $request)
+    {
+        $date = new Carbon();
+        $user = $request->user();
+        if ($user->attendedWeek) {
+            return $user;
+        }
+
+        // Update attendance
+        $user->attendance()->attach(Week::current());
+
+        $user->score += 40;
+        $user->save();
+
+        return $user;
     }
 }

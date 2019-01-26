@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'resource'], function () {
         Route::resource('user', "Api\UserController");
     });
+
+    Route::put('student/attendance', "Api\StudentController@markAttendance");
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
