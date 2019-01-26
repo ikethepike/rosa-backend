@@ -2,6 +2,7 @@
 
 namespace Rosa\Http\Controllers\Api;
 
+use Storage;
 use Rosa\User;
 use Illuminate\Http\Request;
 use Rosa\Http\Controllers\Controller;
@@ -77,5 +78,20 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function setAvatar(Request $request)
+    {
+        $url = Storage::putFile('avatars', $request->file('avatar'));
+
+        if ($url) {
+            $user         = $request->user();
+            $user->avatar = Storage::url($url);
+            $user->save();
+
+            return $user;
+        }
+
+        return abort(500, 'S3 upload issue');
     }
 }

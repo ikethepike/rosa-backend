@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
 
     Route::put('student/attendance', "Api\StudentController@markAttendance");
+
+    Route::post('user/avatar', "Api\UserController@setAvatar");
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
