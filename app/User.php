@@ -63,9 +63,9 @@ class User extends Authenticatable
 
     public function getAttendedWeekAttribute()
     {
-        // if (!$this->student || $this->staff) {
-        //     return false;
-        // }
+        if (!$this->student || $this->staff) {
+            return false;
+        }
 
         $date = new Carbon();
 

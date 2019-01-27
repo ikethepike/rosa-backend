@@ -19,9 +19,15 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('exists', 'Api\StudentController@exists');
 });
 
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('lessons', 'LessonController@index');
+/* Unprotected routes */
+Route::get('lessons', 'LessonController@index');
 
+Route::get('term', 'PlanningController@planning');
+
+Route::get('teachers', "Api\UserController@teachers");
+
+/* Auth protected routes */
+Route::group(['middleware' => 'auth:api'], function () {
     /* Resource routes */
     Route::group(['prefix' => 'resource'], function () {
         Route::resource('user', "Api\UserController");

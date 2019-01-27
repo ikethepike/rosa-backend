@@ -94,4 +94,14 @@ class UserController extends Controller
 
         return abort(500, 'S3 upload issue');
     }
+
+    /**
+     * Returns all teachers.
+     *
+     * @return collection
+     */
+    public function teachers()
+    {
+        return User::where('staff', true)->get();
+    }
 }

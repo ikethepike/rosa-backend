@@ -47,10 +47,5 @@
             <h4>Approve users</h4>
             <user-icon></user-icon> 
         </a>
-
-        <a href="{{ url()->route('keys') }}">
-            <h4>API keys</h4>
-            <key-icon></key-icon> 
-        </a>
     </nav>
 @endsection

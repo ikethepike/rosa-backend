@@ -23,10 +23,6 @@
                     <user-icon></user-icon>
                     <span>Users</span>
                 </a>
-                <a href="{{ url()->route('keys') }}">
-                    <key-icon></key-icon>
-                    <span>API Keys</span>
-                </a>
             </section>
 
             <section class="bottom">

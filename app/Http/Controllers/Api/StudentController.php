@@ -3,6 +3,7 @@
 namespace Rosa\Http\Controllers\Api;
 
 use Hash;
+use Rosa\Term;
 use Rosa\User;
 use Rosa\Week;
 use Carbon\Carbon;
@@ -80,6 +81,11 @@ class StudentController extends Controller
         $user = $request->user();
         if ($user->attendedWeek) {
             return $user;
+        }
+
+        $term = Term::latest()->first();
+        if (!$term->users()->where('users.id', $user->id)->exists()) {
+            $term->users()->attach($user);
         }
 
         // Update attendance
