@@ -82,7 +82,7 @@ class StudentController extends Controller
     public function markAttendance(Request $request)
     {
         $date       = new Carbon();
-        $user       = $request->user();
+        $user       = $request->user()->load('attendance.lessons');
         $user->rank = $user->position();
 
         if ($user->attendedWeek) {

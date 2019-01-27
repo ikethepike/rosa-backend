@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::put('student/attendance', "Api\StudentController@markAttendance");
 
     Route::post('user/avatar', "Api\UserController@setAvatar");
+
+    Route::get('highscores', "Api\HighscoreController@listing");
 });
 
 Route::get('/test', function () {
@@ -49,5 +51,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     $user = $request->user()->load('attendance.lessons');
     $user->rank = $user->position();
 
-    return $user; 
+    return $user;
 });
