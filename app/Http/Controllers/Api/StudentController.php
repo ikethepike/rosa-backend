@@ -55,11 +55,11 @@ class StudentController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $register           = collect($request->all());
-        $register->password = Hash::make($request->password);
-        $register->student  = true;
-        $user               = User::create($register->toArray());
-        $user->rank         = $user->position();
+        $register             = $request->all();
+        $register['password'] = Hash::make($request->password);
+        $register['student']  = true;
+        $user                 = User::create($register);
+        $user->rank           = $user->position();
 
         return response()->json([
             'user'  => $user->load('attendance.lessons'),
