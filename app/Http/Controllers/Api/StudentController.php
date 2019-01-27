@@ -33,7 +33,7 @@ class StudentController extends Controller
     {
         if (auth()->attempt($request->all())) {
             return response()->json([
-                    'user'  => auth()->user()->load('attendance'),
+                    'user'  => auth()->user()->load('attendance.lessons'),
                     'token' => auth()->user()->createToken($this->frontend)->accessToken,
                 ],
                 200
@@ -58,7 +58,7 @@ class StudentController extends Controller
         $user               = User::create($register->toArray());
 
         return response()->json([
-            'user'  => $user,
+            'user'  => $user->load('attendance.lessons'),
             'token' => $user->createToken($this->frontend)->accessToken,
         ], 200);
     }

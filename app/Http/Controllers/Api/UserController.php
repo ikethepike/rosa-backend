@@ -89,7 +89,7 @@ class UserController extends Controller
             $user->avatar = Storage::url($url);
             $user->save();
 
-            return $user;
+            return $user->load("attendance.lessons");
         }
 
         return abort(500, 'S3 upload issue');

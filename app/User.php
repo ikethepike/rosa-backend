@@ -22,6 +22,8 @@ class User extends Authenticatable
 
     protected $appends = ['name', 'attendedWeek'];
 
+    protected $with = ['attendance'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -63,10 +65,6 @@ class User extends Authenticatable
 
     public function getAttendedWeekAttribute()
     {
-        if (!$this->student || $this->staff) {
-            return false;
-        }
-
         $date = new Carbon();
 
         return $this->attendance()->where('weeks.id', Week::current()->id)->exists();
