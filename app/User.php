@@ -40,9 +40,9 @@ class User extends Authenticatable
      */
     public function position()
     {
-        $ranked = self::orderBy('score', 'DESC')->get()->unique('score');
+        $ranked = self::orderBy('score', 'DESC')->where('student', true)->get()->unique('score');
 
-        $rank = null;
+        $rank = 0;
 
         foreach ($ranked->toArray() as $index => $user) {
             if ($user['score'] == $this->score) {
