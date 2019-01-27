@@ -40,13 +40,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('highscores', "Api\HighscoreController@listing");
 });
 
-Route::get('/test', function () {
-    $user = Rosa\User::first();
-    $user->rank = $user->position();
-
-    return $user;
-});
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     $user = $request->user()->load('attendance.lessons');
     $user->rank = $user->position();
