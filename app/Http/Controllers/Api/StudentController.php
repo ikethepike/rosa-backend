@@ -32,8 +32,11 @@ class StudentController extends Controller
     public function login(LoginRequest $request)
     {
         if (auth()->attempt($request->all())) {
+            $user       = auth()->user()->load('attendance.lessons');
+            $user->rank = $user->position();
+
             return response()->json([
-                    'user'  => auth()->user()->load('attendance.lessons'),
+                    'user'  => $user,
                     'token' => auth()->user()->createToken($this->frontend)->accessToken,
                 ],
                 200
@@ -56,6 +59,7 @@ class StudentController extends Controller
         $register->password = Hash::make($request->password);
         $register->student  = true;
         $user               = User::create($register->toArray());
+        $user->rank         = $user->position();
 
         return response()->json([
             'user'  => $user->load('attendance.lessons'),
@@ -77,8 +81,10 @@ class StudentController extends Controller
 
     public function markAttendance(Request $request)
     {
-        $date = new Carbon();
-        $user = $request->user();
+        $date       = new Carbon();
+        $user       = $request->user();
+        $user->rank = $user->position();
+
         if ($user->attendedWeek) {
             return $user;
         }

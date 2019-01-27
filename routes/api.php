@@ -38,6 +38,16 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('user/avatar', "Api\UserController@setAvatar");
 });
 
+Route::get('/test', function () {
+    $user = Rosa\User::first();
+    $user->rank = $user->position();
+
+    return $user;
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user()->load("attendance.lessons");
+    $user = $request->user()->load('attendance.lessons');
+    $user->rank = $user->position();
+
+    return $user; 
 });

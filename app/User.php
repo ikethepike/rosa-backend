@@ -34,18 +34,50 @@ class User extends Authenticatable
     ];
 
     /**
+     * Return the ranking of a user in the highscores.
+     *
+     * @return int
+     */
+    public function position()
+    {
+        $ranked = self::orderBy('score', 'DESC')->get()->unique('score');
+
+        $rank = null;
+
+        foreach ($ranked->toArray() as $index => $user) {
+            if ($user['score'] == $this->score) {
+                $rank = $index + 1;
+            }
+        }
+
+        return $rank;
+    }
+
+    /**
      * Lesson relation.
+     *
+     * @return Rosa\Lesson
      */
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
     }
 
+    /**
+     * return all attended weeks.
+     *
+     * @return Rosa\Week
+     */
     public function attendance()
     {
         return $this->belongsToMany(Week::class, 'user_week');
     }
 
+    /**
+     * Return all attended terms.
+     *
+     * @return Rosa\Term
+     */
     public function terms()
     {
         return $this->belongsToMany(Term::class, 'term_user');

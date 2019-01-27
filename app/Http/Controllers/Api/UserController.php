@@ -40,7 +40,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::findOrFail($id);
+        $user = User::findOrFail($id);
+        $user->rank = $user->position();
+        return $user;
     }
 
     /**
