@@ -5,7 +5,6 @@ namespace Rosa\Http\Controllers;
 use Hash;
 use Rosa\User;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Rosa\Http\Requests\User\LoginRequest;
 use Rosa\Http\Requests\User\RegisterRequest;
 
