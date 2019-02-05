@@ -26,6 +26,8 @@ Route::get('term', 'PlanningController@planning');
 
 Route::get('teachers', "Api\UserController@teachers");
 
+Route::get('week/current', "Api\WeekController@current");
+
 /* Auth protected routes */
 Route::group(['middleware' => 'auth:api'], function () {
     /* Resource routes */
