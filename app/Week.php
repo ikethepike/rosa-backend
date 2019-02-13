@@ -34,6 +34,11 @@ class Week extends Model
         return $this->belongsToMany(User::class, 'user_week');
     }
 
+    public function challenge()
+    {
+        return $this->hasOne(Challenge::class);
+    }
+
     public function getDateAttribute()
     {
         $week = (int) date('W');

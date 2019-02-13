@@ -31,6 +31,10 @@ class StudentController extends Controller
      */
     public function login(LoginRequest $request)
     {
+        if (!User::where('email', $request->email)->exists()) {
+            return abort(404, 'Incorrect email address');
+        }
+
         if (auth()->attempt($request->all())) {
             $user       = auth()->user()->load('attendance.lessons');
             $user->rank = $user->position();
@@ -43,7 +47,7 @@ class StudentController extends Controller
             );
         }
 
-        return abort(401);
+        return abort(401, 'Incorrect password');
     }
 
     /**

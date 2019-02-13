@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.7'
 
 volumes:
   database:
@@ -8,8 +8,6 @@ services:
   mariadb:
     image: mariadb
     restart: always
-    volumes:
-      - database:/var/lib/mysql
     env_file:
       - .env
     environment:
@@ -18,7 +16,7 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
     ports:
-      - '3306:3306'
+      - 3306:3306
   adminer:
     image: adminer
     restart: always
@@ -39,12 +37,13 @@ services:
   laravel:
     image: jguyomard/laravel-php:7.2
     environment:
-      - 'DB_PORT=3306'
-      - 'DB_HOST=mariadb'
+      DB_PORT: 3306
+      DB_HOST: mariadb
     links:
       - mariadb
     volumes:
       - ./:/var/www/
+      - ./public:/var/www/public/
       - backend:/var/www/
   redis:
     image: redis
