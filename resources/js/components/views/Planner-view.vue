@@ -29,11 +29,7 @@
 
         <!-- Future -->
         <template v-if="weeks.future.length">
-          <calendar-tile
-            v-for="week in weeks.future.slice(0, futureCount)"
-            :key="week.id"
-            :week="week"
-          ></calendar-tile>
+          <calendar-tile v-for="week in weeks.future" :key="week.id" :week="week"></calendar-tile>
         </template>
       </div>
     </template>
@@ -73,11 +69,6 @@ export default {
       })
 
       return output
-    },
-    futureCount() {
-      if (!this.term) return 5
-
-      return 3 + (2 - this.weeks.past.length) + (this.weeks.current ? 0 : 1)
     },
   },
   methods: {

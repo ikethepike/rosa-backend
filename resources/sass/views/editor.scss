@@ -25,7 +25,15 @@ $editor-padding: 0 2rem;
     background-size: cover;
     #editor-toolbar {
       opacity: 1;
-      mix-blend-mode: difference;
+      color: $highlight;
+      position: relative;
+      @include gradient(
+        (
+          0%: rgba(0, 0, 0, 0.7),
+          60%: rgba(0, 0, 0, 0.4),
+          100%: rgba(0, 0, 0, 0),
+        )
+      );
     }
   }
   input,
@@ -47,6 +55,9 @@ $editor-padding: 0 2rem;
     svg {
       height: 1.75em;
       stroke-width: 0;
+    }
+    section {
+      position: relative;
     }
     section.left > * {
       margin-right: 1rem;

@@ -25,12 +25,12 @@
     margin: 0 auto;
     flex-flow: wrap;
     width: $desktop-flow;
-    justify-content: space-between;
   }
   a.lesson {
     width: 22rem;
     height: 10rem;
     padding: 1rem;
+    margin-right: 1rem;
     margin-bottom: 1rem;
     border: 2px solid #fff;
     .title {

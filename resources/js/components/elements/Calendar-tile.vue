@@ -1,23 +1,28 @@
 <template>
-  <div class="calendar-tile" :class="week.date">
+  <div class="calendar-tile slide-block-right" :class="week.date">
     <header class="calendar-header">
-      Tu
-      <sup class="week">{{ week.number }}</sup>
+      <span class="fancy-heading">
+        Tu
+        <sup class="week">{{ week.number }}</sup>
+      </span>
+      
+      <a class="plus-button" @click="picker = true"></a>
     </header>
 
     <lesson-picker v-if="picker" @close="picker = false" @pick="onPick"></lesson-picker>
 
     <div class="lessons">
-      <div :key="lesson.id" v-for="lesson in week.lessons">
+      <div
+        :key="`${week.number}:lesson:${lesson.id}:${index}`"
+        v-for="(lesson, index) in week.lessons"
+      >
         <span class="title">{{ lesson.title }}</span>
         <span class="name">{{ lesson.user.name }}</span>
         <a @click="detach(lesson.id)">Detach</a>
       </div>
     </div>
 
-    <nav class="bottom-nav">
-      <a class="plus-button" @click="picker = true"></a>
-    </nav>
+    <nav class="bottom-nav"></nav>
   </div>
 </template>
 <script>
