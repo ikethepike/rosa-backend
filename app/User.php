@@ -12,17 +12,27 @@ class User extends Authenticatable
     use Notifiable, HasApiTokens;
 
     /**
-     * The attributes that are mass assignable.
+     * Assignable attributes.
      *
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'staff', 'approved', 'avatar', 'paragraph', 'student',
+        'first_name', 'last_name', 'email', 'password', 'staff', 'approved', 'avatar', 'paragraph', 'student', 'score',
     ];
 
+    /**
+     * Appended attributes.
+     *
+     * @var array
+     */
     protected $appends = ['name', 'attendedWeek'];
 
-    protected $with = ['attendance'];
+    /**
+     * Default load relations.
+     *
+     * @var array
+     */
+    protected $with = [];
 
     /**
      * The attributes that should be hidden for arrays.

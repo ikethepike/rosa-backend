@@ -24,4 +24,24 @@ class Challenge extends Model
     {
         return $this->belongsTo(Week::class);
     }
+
+    /**
+     * Return winners.
+     *
+     * @return Rosa\User
+     */
+    public function winners()
+    {
+        return $this->belongsToMany(User::class, 'challenge_user')->withPivot('placement');
+    }
+
+    /**
+     * Return all submissions.
+     *
+     * @return Rosa\Submission
+     */
+    public function submissions()
+    {
+        return $this->hasMany(ChallengeSubmission::class);
+    }
 }

@@ -64,4 +64,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::post('lesson/attach', 'PlanningController@attachLesson');
         Route::post('lesson/detach', 'PlanningController@detachLesson');
     });
+
+    Route::get('challenge/current', "Api\ChallengeController@currentChallenge"); 
+    Route::post('challenge/winner/add', "Api\ChallengeController@addWinner"); 
 });

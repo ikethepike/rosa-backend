@@ -2,13 +2,12 @@
 
 namespace Rosa\Http\Controllers\Api;
 
-use Storage;
-use Rosa\User;
 use Illuminate\Http\Request;
+use Rosa\ChallengeSubmission;
 use Rosa\Http\Controllers\Controller;
-use Rosa\Http\Requests\User\RegisterRequest;
+use Rosa\Http\Requests\ChallengeSubmission\StoreRequest;
 
-class UserController extends Controller
+class ChallengeSubmissionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        return ChallengeSubmission::all();
     }
 
     /**
@@ -27,9 +26,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(RegisterRequest $request)
+    public function store(StoreRequest $request)
     {
-        return User::create($request->all());
+        return ChallengeSubmission::create($request->all());
     }
 
     /**
@@ -41,10 +40,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user       = User::findOrFail($id);
-        $user->rank = $user->position();
-
-        return $user->load('attendance');
+        return ChallengeSubmission::findOrFail($id);
     }
 
     /**
@@ -57,7 +53,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return (int) User::findOrFail($id)->update($request->all());
+        return ChallengeSubmission::findOrFail($id)->update($request->all());
     }
 
     /**
@@ -69,31 +65,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        return User::findOrFail($id)->destroy();
-    }
-
-    public function setAvatar(Request $request)
-    {
-        $url = Storage::putFile('avatars', $request->file('avatar'));
-
-        if ($url) {
-            $user         = $request->user();
-            $user->avatar = Storage::url($url);
-            $user->save();
-
-            return $user->load('attendance.lessons');
-        }
-
-        return abort(500, 'S3 upload issue');
-    }
-
-    /**
-     * Returns all teachers.
-     *
-     * @return collection
-     */
-    public function teachers()
-    {
-        return User::where('staff', true)->get();
+        return (int) ChallengeSubmission::findOrFail($id)->destroy();
     }
 }
