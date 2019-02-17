@@ -1,6 +1,6 @@
 <?php
 
-namespace Rosa\Http\Requests\ChallengeSubmission;
+namespace Rosa\Http\Requests\Submission;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,7 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,8 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'url'     => 'url|required',
-            'comment' => 'string|nullable',
+            //
         ];
     }
 }

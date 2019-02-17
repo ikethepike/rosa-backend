@@ -30,20 +30,23 @@ Route::get('week/current', "Api\WeekController@current");
 
 Route::get('challenge/submissions/{weekId?}', "Api\ChallengeController@submissions");
 
+Route::get('highscores', "Api\HighscoreController@listing");
+
+Route::get('challenge/current', 'Api\ChallengeController@currentChallenge');
+
 /* Auth protected routes */
 Route::group(['middleware' => 'auth:api'], function () {
     /* Resource routes */
     Route::group(['prefix' => 'resource'], function () {
         Route::resource('user', "Api\UserController");
+        Route::resource('challenge/submission', "Api\ChallengeSubmissionController");
     });
 
     Route::put('student/attendance', "Api\StudentController@markAttendance");
 
     Route::post('user/avatar', "Api\UserController@setAvatar");
 
-    Route::get('highscores', "Api\HighscoreController@listing");
-
-    Route::resource('challenge/submission', "Api\ChallengeSubmissionController");
+    Route::put('submission/applaud', "Api\ChallengeSubmissionController@applaud");
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

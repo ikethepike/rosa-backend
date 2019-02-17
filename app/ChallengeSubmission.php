@@ -11,7 +11,14 @@ class ChallengeSubmission extends Model
      *
      * @var array
      */
-    protected $fillable = ['url', 'comment'];
+    protected $fillable = ['url', 'comment', 'challenge_id', "placement"];
+
+    /**
+     * Default relations.
+     *
+     * @var array
+     */
+    protected $with = ['user'];
 
     /* Relations */
 
@@ -33,5 +40,15 @@ class ChallengeSubmission extends Model
     public function challenge()
     {
         return $this->belongsTo(Challenge::class);
+    }
+
+    /**
+     * Return all users that have voted for a given submission.
+     *
+     * @return Rosa\User
+     */
+    public function votes()
+    {
+        return $this->belongsToMany(User::class, 'submission_user');
     }
 }

@@ -17,9 +17,9 @@ class ChallengeController extends Controller
      *
      * @return Rosa\Challenge
      */
-    public function currentChallenge()
+    public static function currentChallenge()
     {
-        return Week::current()->load('challenge.winners')->challenge;
+        return Week::current()->load(['challenge.winners', 'challenge.submissions.votes'])->challenge;
     }
 
     /**
@@ -37,7 +37,7 @@ class ChallengeController extends Controller
             $week = Week::current();
         }
 
-        return $week->load('challenge.submissions')->challenge->submissions;
+        return $week->load('challenge.submissions')->challenge->submissions->orderBy("id", "DESC");
     }
 
     /**

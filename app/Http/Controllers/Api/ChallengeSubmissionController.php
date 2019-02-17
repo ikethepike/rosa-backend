@@ -10,6 +10,33 @@ use Rosa\Http\Requests\ChallengeSubmission\StoreRequest;
 class ChallengeSubmissionController extends Controller
 {
     /**
+     * Applaud a user for their work.
+     *
+     * @param Request $request
+     *
+     * @return int
+     */
+    public function applaud(Request $request)
+    {
+        $submission = ChallengeSubmission::findOrFail($request->submission);
+
+        if ($submission->user_id === $request->user()->id) {
+            return abort(401, 'No cheating');
+        }
+
+        if ($submission->votes()->where('users.id', $request->user()->id)->exists()) {
+            return abort(409, 'Already voted');
+        }
+
+        $submission->user->score += 5;
+        $submission->user->save();
+
+        $submission->votes()->attach($request->user());
+
+        return $submission->load('votes');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -28,7 +55,15 @@ class ChallengeSubmissionController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        return ChallengeSubmission::create($request->all());
+        $currentChallenge       = ChallengeController::currentChallenge();
+        $create                 = $request->all();
+        $create['challenge_id'] = $currentChallenge->id;
+
+        $user = $request->user();
+        $user->score += 40;
+        $user->save();
+
+        return $user->challengeSubmissions()->create($create)->load('user');
     }
 
     /**

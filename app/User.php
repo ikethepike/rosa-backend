@@ -93,6 +93,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Term::class, 'term_user');
     }
 
+    /**
+     * Return challengeSubmission relation 
+     *
+     * @return Rosa\ChallengeSubmission
+     */
+    public function challengeSubmissions()
+    {
+        return $this->hasMany(ChallengeSubmission::class);
+    }
+
     /* Attributes */
 
     /**
@@ -105,6 +115,11 @@ class User extends Authenticatable
         return $this->first_name . ' ' . $this->last_name;
     }
 
+    /**
+     * Return whether user attended current week
+     *
+     * @return bool
+     */
     public function getAttendedWeekAttribute()
     {
         $date = new Carbon();

@@ -9,6 +9,6 @@ class HighscoreController extends Controller
 {
     public function listing()
     {
-        return User::orderBy('score', 'DESC')->where('student', true)->get();
+        return User::orderBy('score', 'DESC')->get();
     }
 }
