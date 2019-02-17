@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
     Route::get('lessons', 'HomeController@lessons')->name('lessons');
 
+    Route::get('challenges', 'HomeController@challenges')->name('challenges');
+
     Route::get('keys', 'HomeController@keys')->name('keys');
 
     Route::get('users/to-approve', 'UserController@toApprove');
@@ -54,6 +56,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         ]);
     });
 
+    Route::post('challenges', 'Api\ChallengeController@store');
+
     Route::post('lessons/masthead', 'LessonController@masthead');
 
     Route::group(['prefix' => 'planning'], function () {
@@ -65,6 +69,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::post('lesson/detach', 'PlanningController@detachLesson');
     });
 
-    Route::get('challenge/current', "Api\ChallengeController@currentChallenge"); 
-    Route::post('challenge/winner/add', "Api\ChallengeController@addWinner"); 
+    Route::get('challenge/current', "Api\ChallengeController@currentChallenge");
+    Route::post('challenge/winner/add', "Api\ChallengeController@addWinner");
 });

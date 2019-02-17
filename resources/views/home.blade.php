@@ -38,6 +38,11 @@
             <lesson-icon></lesson-icon> 
         </a>
 
+        <a href="{{ url()->route('challenges') }}">
+            <h4>Create a challenge</h4>
+            <lesson-icon></lesson-icon> 
+        </a>
+
         <a href="{{ url()->route('lessons') }}">
             <h4>Manage lessons</h4>
             <science-icon></science-icon>

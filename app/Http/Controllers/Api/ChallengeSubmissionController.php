@@ -63,7 +63,7 @@ class ChallengeSubmissionController extends Controller
         $user->score += 40;
         $user->save();
 
-        return $user->challengeSubmissions()->create($create)->load('user');
+        return $user->challengeSubmissions()->create($create)->load(['user', "votes"]);
     }
 
     /**
