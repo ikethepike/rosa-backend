@@ -17,6 +17,8 @@
       <textarea name="description" id="description" placeholder="Description..." style="background: none;"></textarea>
     </div>
 
+    {{ csrf_field() }}
+
     <div class="slide-block">
       <input type="submit" class="button" value="Submit">
     </div>
