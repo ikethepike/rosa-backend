@@ -2,8 +2,11 @@
 
 namespace Rosa\Http\Controllers\Api;
 
+namespace Rosa\Http\Controllers\Api;
+
 use Rosa\User;
 use Rosa\Week;
+use Carbon\Carbon;
 use Rosa\Challenge;
 use Illuminate\Http\Request;
 use Rosa\Http\Controllers\Controller;
@@ -13,13 +16,29 @@ use Rosa\Http\Requests\Challenge\StoreRequest;
 class ChallengeController extends Controller
 {
     /**
+     * Return the relevant challenge week.
+     *
+     * @return Rosa\Week
+     */
+    public static function currentWeek()
+    {
+        $now = Carbon::now();
+
+        if ($now->dayOfWeek < 3) {
+            $now->subWeek();
+        }
+
+        return Week::where('number', $now->format('W'))->whereYear('starts_at', $now)->first();
+    }
+
+    /**
      * Return the current challenge of the week.
      *
      * @return Rosa\Challenge
      */
     public static function currentChallenge()
     {
-        return Week::current()->load(['challenge.winners', 'challenge.submissions.votes'])->challenge;
+        return $this->currentWeek()->load(['challenge.winners', 'challenge.submissions.votes'])->challenge;
     }
 
     /**
@@ -34,10 +53,10 @@ class ChallengeController extends Controller
         if ($weekId) {
             $week = Week::findOrFail($weekId);
         } else {
-            $week = Week::current();
+            $week = $this->currentWeek();
         }
 
-        return $week->load('challenge.submissions')->challenge->submissions->orderBy("id", "DESC");
+        return $week->load('challenge.submissions')->challenge->submissions->orderBy('id', 'DESC');
     }
 
     /**
@@ -56,7 +75,7 @@ class ChallengeController extends Controller
         $user->score = $scores[$request->placement - 1];
         $user->save();
 
-        $current = Week::current();
+        $current =$this->currentWeek();
 
         DB::insert('insert into challenge_user (user_id, week_id, placement) values (?, ?, ?)', [$request->user_id, $current->id, $request->placement]);
 
@@ -82,7 +101,7 @@ class ChallengeController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        return Week::current()->challenge()->create($request->all());
+        return$this->currentWeek()->challenge()->create($request->all());
     }
 
     /**

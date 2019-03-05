@@ -34,6 +34,8 @@ Route::get('highscores', "Api\HighscoreController@listing");
 
 Route::get('challenge/current', 'Api\ChallengeController@currentChallenge');
 
+Route::get('challenge/week', 'Api\ChallengeController@currentWeek');
+
 /* Auth protected routes */
 Route::group(['middleware' => 'auth:api'], function () {
     /* Resource routes */
