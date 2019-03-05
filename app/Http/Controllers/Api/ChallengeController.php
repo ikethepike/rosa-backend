@@ -38,7 +38,7 @@ class ChallengeController extends Controller
      */
     public static function currentChallenge()
     {
-        return $this->currentWeek()->load(['challenge.winners', 'challenge.submissions.votes'])->challenge;
+        return self::currentWeek()->load(['challenge.winners', 'challenge.submissions.votes'])->challenge;
     }
 
     /**
@@ -53,7 +53,7 @@ class ChallengeController extends Controller
         if ($weekId) {
             $week = Week::findOrFail($weekId);
         } else {
-            $week = $this->currentWeek();
+            $week = self::currentWeek();
         }
 
         return $week->load('challenge.submissions')->challenge->submissions->orderBy('id', 'DESC');
@@ -75,7 +75,7 @@ class ChallengeController extends Controller
         $user->score = $scores[$request->placement - 1];
         $user->save();
 
-        $current =$this->currentWeek();
+        $current = self::currentWeek();
 
         DB::insert('insert into challenge_user (user_id, week_id, placement) values (?, ?, ?)', [$request->user_id, $current->id, $request->placement]);
 
@@ -101,7 +101,7 @@ class ChallengeController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        return$this->currentWeek()->challenge()->create($request->all());
+        returnself::currentWeek()->challenge()->create($request->all());
     }
 
     /**
