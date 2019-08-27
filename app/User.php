@@ -124,6 +124,10 @@ class User extends Authenticatable
     {
         $date = new Carbon();
 
+        if (!Week::current()) {
+            return false;
+        }
+
         return $this->attendance()->where('weeks.id', Week::current()->id)->exists();
     }
 }
