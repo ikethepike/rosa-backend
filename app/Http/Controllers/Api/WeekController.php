@@ -11,6 +11,10 @@ class WeekController extends Controller
     {
         $week = Week::current();
 
+        if (!$week) {
+            return abort(404);
+        }
+
         return $week->load('lessons');
     }
 }

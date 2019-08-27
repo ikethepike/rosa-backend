@@ -101,7 +101,7 @@ class ChallengeController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        returnself::currentWeek()->challenge()->create($request->all());
+        return self::currentWeek()->challenge()->create($request->all());
     }
 
     /**
