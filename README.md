@@ -1,6 +1,6 @@
-# Rosa Stationen
+# Seeds coding
 
-This is the beginning to the Rosa Stationen app, bundled is Laravel, Vue and a few helpful packages.
+This is a rebranded version of the old rosa backend. It'll need some love and attention (plus updates!) But it's essentially what we need for the upcoming site. 
 
 # Getting started
 
